@@ -3,40 +3,187 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Venkataramana's Homepage</title>
+  <title>Venkataramana | AI, OR & Data Science</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet">
   <style>
-    body { font-family: Arial, sans-serif; margin: 2em; background: #f9f9f9; color: #222; }
-    .container { max-width: 700px; margin: auto; background: #fff; padding: 2em; border-radius: 8px; box-shadow: 0 2px 8px #eee; }
-    h1 { color: #2d3e50; }
-    h2 { color: #3b5998; }
-    a { color: #0077b5; text-decoration: none; }
-    .topics { margin-top: 1em; }
-    .topics li { margin-bottom: 0.5em; }
+    body {
+      font-family: 'Montserrat', Arial, sans-serif;
+      margin: 0;
+      background: #f4f7fa;
+      color: #222;
+    }
+    .hero {
+      background: linear-gradient(120deg, #0077b5 60%, #6dd5ed 100%);
+      color: #fff;
+      padding: 3em 1em 2em 1em;
+      text-align: center;
+      position: relative;
+    }
+    .profile-img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 4px solid #fff;
+      object-fit: cover;
+      margin-bottom: 1em;
+      background: #eee;
+    }
+    .container {
+      max-width: 900px;
+      margin: -60px auto 0 auto;
+      background: #fff;
+      padding: 2em 2em 3em 2em;
+      border-radius: 12px;
+      box-shadow: 0 4px 24px #b0c4d6;
+      position: relative;
+      z-index: 2;
+    }
+    h1 {
+      margin-top: 0.5em;
+      font-size: 2.5em;
+      letter-spacing: -1px;
+    }
+    h2 {
+      color: #0077b5;
+      margin-top: 2em;
+      margin-bottom: 0.5em;
+    }
+    .bio {
+      font-size: 1.15em;
+      margin: 1em 0 2em 0;
+      color: #444;
+    }
+    .highlights {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1em;
+      margin-bottom: 2em;
+    }
+    .highlight-card {
+      background: #f4f7fa;
+      border-radius: 8px;
+      padding: 1em 1.5em;
+      flex: 1 1 200px;
+      min-width: 180px;
+      box-shadow: 0 2px 8px #e0e7ef;
+      text-align: center;
+    }
+    .topics {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5em;
+      margin-bottom: 2em;
+    }
+    .topic-card {
+      background: #eaf6fb;
+      border-radius: 10px;
+      padding: 1.5em 1em;
+      flex: 1 1 200px;
+      min-width: 200px;
+      box-shadow: 0 2px 8px #e0e7ef;
+      text-align: center;
+      transition: transform 0.2s;
+    }
+    .topic-card:hover {
+      transform: translateY(-6px) scale(1.03);
+      box-shadow: 0 6px 24px #b0c4d6;
+    }
+    .topic-icon {
+      font-size: 2.5em;
+      margin-bottom: 0.5em;
+    }
+    .articles {
+      margin-bottom: 2em;
+    }
+    .article-card {
+      background: #f9fafb;
+      border-radius: 8px;
+      padding: 1em 1.5em;
+      margin-bottom: 1em;
+      box-shadow: 0 1px 4px #e0e7ef;
+    }
+    .contact {
+      text-align: center;
+      margin-top: 2em;
+    }
+    .contact a {
+      color: #0077b5;
+      text-decoration: none;
+      margin: 0 1em;
+      font-weight: bold;
+      font-size: 1.1em;
+    }
+    @media (max-width: 700px) {
+      .container { padding: 1em 0.5em 2em 0.5em; }
+      .highlights, .topics { flex-direction: column; }
+    }
   </style>
 </head>
 <body>
+  <div class="hero">
+    <img src="https://avatars.githubusercontent.com/u/1027276?v=4" alt="Venkataramana" class="profile-img">
+    <h1>Venkataramana</h1>
+    <div>AI, Operations Research & Data Science Enthusiast</div>
+  </div>
   <div class="container">
-    <h1>Hi, I'm Venkataramana</h1>
-    <p>
-      I am a technology enthusiast with a strong background in data science, operations research, and artificial intelligence. 
-      With experience in building innovative solutions and a passion for continuous learning, I enjoy exploring the latest advancements in AI and analytics.
-      <br>
-      <a href="https://www.linkedin.com/in/venkataramana/" target="_blank">View my LinkedIn profile</a>
-    </p>
-    <h2>About This Site</h2>
-    <p>
-      My goal is to share interesting articles and insights on:
-    </p>
-    <ul class="topics">
-      <li>Generative AI</li>
-      <li>Agentic AI</li>
-      <li>Operations Research</li>
-      <li>Data Science</li>
-    </ul>
-    <p>
-      Stay tuned for upcoming posts and feel free to connect!
-    </p>
+    <div class="bio">
+      Welcome! I'm a technology leader passionate about building intelligent systems that solve real-world problems. With expertise in data science, operations research, and artificial intelligence, I enjoy exploring the frontiers of Gen AI and agentic systems. My journey spans research, product development, and mentoring teams to deliver impactful solutions.
+    </div>
+    <div class="highlights">
+      <div class="highlight-card">
+        <strong>10+ years</strong><br>in analytics & AI
+      </div>
+      <div class="highlight-card">
+        <strong>PhD</strong><br>in Operations Research
+      </div>
+      <div class="highlight-card">
+        <strong>Speaker</strong><br>at AI & Data Science events
+      </div>
+      <div class="highlight-card">
+        <strong>Mentor</strong><br>for aspiring data scientists
+      </div>
+    </div>
+    <h2>Featured Topics</h2>
+    <div class="topics">
+      <div class="topic-card">
+        <div class="topic-icon">🤖</div>
+        <strong>Generative AI</strong>
+        <p>Exploring creative AI models, LLMs, and their applications in content, code, and design.</p>
+      </div>
+      <div class="topic-card">
+        <div class="topic-icon">🧑‍💻</div>
+        <strong>Agentic AI</strong>
+        <p>Building autonomous agents that plan, reason, and act in complex environments.</p>
+      </div>
+      <div class="topic-card">
+        <div class="topic-icon">📈</div>
+        <strong>Operations Research</strong>
+        <p>Solving optimization and decision-making problems using mathematical models.</p>
+      </div>
+      <div class="topic-card">
+        <div class="topic-icon">📊</div>
+        <strong>Data Science</strong>
+        <p>From data wrangling to predictive analytics and actionable insights.</p>
+      </div>
+    </div>
+    <h2>Latest Articles</h2>
+    <div class="articles">
+      <div class="article-card">
+        <strong>Coming soon:</strong> My first article on "How Generative AI is Transforming Business Operations"
+      </div>
+      <div class="article-card">
+        <strong>Coming soon:</strong> "Agentic AI: The Next Leap in Autonomous Systems"
+      </div>
+      <div class="article-card">
+        <strong>Coming soon:</strong> "Optimization in the Age of AI: Modern Operations Research"
+      </div>
+    </div>
+    <h2>Contact</h2>
+    <div class="contact">
+      <a href="https://www.linkedin.com/in/venkataramana/" target="_blank">LinkedIn</a>
+      <a href="mailto:your.email@example.com">Email</a>
+    </div>
   </div>
 </body>
 </html>
