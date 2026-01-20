@@ -5,18 +5,16 @@
   <title>Venkataramana | Advanced AI & Decision Intelligence</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-FDD57R66C5"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FDD57R66C5"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-FDD57R66C5');
+  </script>
 
-  gtag('config', 'G-FDD57R66C5');
-</script>
-  
-
-  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,600,700&display=swap" rel="stylesheet">
 
   <style>
     body {
@@ -24,194 +22,111 @@
       margin: 0;
       background: #f4f7fa;
       color: #222;
+      line-height: 1.6;
     }
+
+    /* NAV */
+    nav {
+      position: sticky;
+      top: 0;
+      background: #ffffff;
+      padding: 0.8em 2em;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      z-index: 10;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    nav a {
+      text-decoration: none;
+      color: #0077b5;
+      font-weight: 600;
+      margin-left: 1.5em;
+    }
+
+    /* HERO */
     .hero {
       background: linear-gradient(120deg, #0077b5 60%, #6dd5ed 100%);
       color: #fff;
-      padding: 3em 1em 2em 1em;
+      padding: 4em 1em 3em;
       text-align: center;
-      position: relative;
     }
     .profile-img {
-      width: 120px;
-      height: 120px;
+      width: 130px;
+      height: 130px;
       border-radius: 50%;
       border: 4px solid #fff;
-      object-fit: cover;
       margin-bottom: 1em;
-      background: #eee;
     }
+    .hero h1 {
+      font-size: 2.8em;
+      margin-bottom: 0.2em;
+    }
+    .hero p {
+      font-size: 1.2em;
+      max-width: 700px;
+      margin: auto;
+    }
+
+    /* CONTAINER */
     .container {
-      max-width: 900px;
-      margin: -60px auto 0 auto;
+      max-width: 1000px;
+      margin: -70px auto 0;
       background: #fff;
-      padding: 2em 2em 3em 2em;
-      border-radius: 12px;
-      box-shadow: 0 4px 24px #b0c4d6;
-      position: relative;
-      z-index: 2;
+      padding: 3em;
+      border-radius: 14px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.08);
     }
-    h1 {
-      margin-top: 0.5em;
-      font-size: 2.5em;
-      letter-spacing: -1px;
-    }
+
     h2 {
       color: #0077b5;
-      margin-top: 2em;
-      margin-bottom: 0.5em;
+      margin-top: 2.5em;
+      margin-bottom: 0.8em;
     }
-    .bio {
-      font-size: 1.15em;
-      margin: 1em 0 2em 0;
-      color: #444;
-      line-height: 1.6;
+
+    .section-divider {
+      height: 1px;
+      background: #e0e7ef;
+      margin: 3em 0;
     }
+
+    /* HIGHLIGHTS */
     .highlights {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1em;
-      margin-bottom: 2em;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5em;
     }
     .highlight-card {
       background: #f4f7fa;
-      border-radius: 8px;
-      padding: 1em 1.5em;
-      flex: 1 1 200px;
-      min-width: 180px;
-      box-shadow: 0 2px 8px #e0e7ef;
-      text-align: center;
-    }
-    .topics {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1.5em;
-      margin-bottom: 2em;
-    }
-    .topic-card {
-      background: #eaf6fb;
+      padding: 1.5em;
       border-radius: 10px;
-      padding: 1.5em 1em;
-      flex: 1 1 200px;
-      min-width: 200px;
-      box-shadow: 0 2px 8px #e0e7ef;
       text-align: center;
       transition: transform 0.2s;
     }
+    .highlight-card:hover {
+      transform: translateY(-5px);
+    }
+
+    /* TOPICS */
+    .topics {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5em;
+    }
+    .topic-card {
+      background: #eaf6fb;
+      padding: 1.8em;
+      border-radius: 12px;
+      transition: transform 0.2s;
+    }
     .topic-card:hover {
-      transform: translateY(-6px) scale(1.03);
-      box-shadow: 0 6px 24px #b0c4d6;
+      transform: translateY(-6px);
     }
-    .topic-icon {
-      font-size: 2.5em;
-      margin-bottom: 0.5em;
-    }
-    .articles {
-      margin-bottom: 2em;
-    }
-    .article-card {
-      background: #f9fafb;
-      border-radius: 8px;
-      padding: 1em 1.5em;
-      margin-bottom: 1em;
-      box-shadow: 0 1px 4px #e0e7ef;
-    }
-    .contact {
+
+    /* CTA */
+    .cta {
       text-align: center;
-      margin-top: 2em;
+      margin-top: 3em;
     }
-    .contact a {
-      color: #0077b5;
-      text-decoration: none;
-      margin: 0 1em;
-      font-weight: bold;
-      font-size: 1.1em;
-    }
-    @media (max-width: 700px) {
-      .container { padding: 1em 0.5em 2em 0.5em; }
-      .highlights, .topics { flex-direction: column; }
-    }
-  </style>
-</head>
-
-<body>
-
-  <div class="hero">
-    <img src="https://avatars.githubusercontent.com/u/1027276?v=4" alt="Venkataramana" class="profile-img">
-    <h1>Venkataramana</h1>
-    <div>Advanced AI, Decision Intelligence & Machine Learning Systems</div>
-  </div>
-
-  <div class="container">
-
-    <div class="bio">
-      I design and build <strong>production‑grade AI and decision intelligence systems</strong> that operate reliably in real‑world environments.
-      My work spans advanced machine learning, operations research, and modern AI architectures—including generative and agent‑based systems—
-      with a strong emphasis on scalability, explainability, and governance.
-      <br><br>
-      Over the past two decades, I have led analytics and AI initiatives across research and industry, translating complex analytical ideas
-      into systems that support high‑stakes decisions.
-    </div>
-
-    <div class="highlights">
-      <div class="highlight-card">
-        <strong>19+ years</strong><br>AI & analytics leadership
-      </div>
-      <div class="highlight-card">
-        <strong>PhD</strong><br>Operations Research
-      </div>
-      <div class="highlight-card">
-        <strong>Enterprise AI</strong><br>Production & governance
-      </div>
-      <div class="highlight-card">
-        <strong>Mentorship</strong><br>Teams & practitioners
-      </div>
-    </div>
-
-    <h2>Core Focus Areas</h2>
-
-    <div class="topics">
-      <div class="topic-card">
-        <div class="topic-icon">🤖</div>
-        <strong>Generative AI</strong>
-        <p>Enterprise‑safe LLM applications, retrieval‑augmented systems, and AI copilots designed for reliability and control.</p>
-      </div>
-
-      <div class="topic-card">
-        <div class="topic-icon">🧠</div>
-        <strong>Agentic AI</strong>
-        <p>Autonomous and semi‑autonomous agents that reason, plan, and act across multi‑step decision workflows.</p>
-      </div>
-
-      <div class="topic-card">
-        <div class="topic-icon">📈</div>
-        <strong>Decision Science</strong>
-        <p>Optimization, forecasting, and decision modeling that connect predictions to real operational actions.</p>
-      </div>
-
-      <div class="topic-card">
-        <div class="topic-icon">📊</div>
-        <strong>Machine Learning Systems</strong>
-        <p>End‑to‑end ML pipelines with validation, monitoring, and governance built in from day one.</p>
-      </div>
-    </div>
-
-    <h2>Writing & Research</h2>
-
-    <div class="articles">
-      <div class="article-card">
-        <strong>Upcoming:</strong> Eigenvalues and their role in modern data science and machine learning
-      </div>
-    </div>
-
-    <h2>Connect</h2>
-
-    <div class="contact">
-      <a href="https://www.linkedin.com/in/venkataramana/" target="_blank">LinkedIn</a>
-      <a href="mailto:dr.ramana@outlook.com">Email</a>
-    </div>
-
-  </div>
-
-</body>
-</html>
+    .cta a {
+      background
