@@ -1,0 +1,248 @@
+<p><img src="../../iisc_logo.png" style="width:3cm" alt="image" /></p>
+<p><span><em>Indian Institute of Science, Bangalore –
+Alumni</em></span></p>
+<h1 id="introduction">Introduction</h1>
+<p>Eigenvalues and eigenvectors form the backbone of many machine
+learning algorithms and data science techniques. From Principal
+Component Analysis (PCA) to spectral clustering, understanding these
+concepts is crucial for practitioners. This article provides a
+comprehensive overview of eigenvalues, their properties, and their
+applications in ML/DS.</p>
+<h1 id="mathematical-background">Mathematical Background</h1>
+<h2 id="definition">Definition</h2>
+<p>For a square matrix <span class="math inline"><em>A</em></span> of
+size <span class="math inline"><em>n</em> × <em>n</em></span>, a
+non-zero vector <span class="math inline"><strong>v</strong></span> and
+scalar <span class="math inline"><em>λ</em></span> are called an
+eigenvector and eigenvalue, respectively, if they satisfy:</p>
+<p><span
+class="math display"><em>A</em><strong>v</strong> = <em>λ</em><strong>v</strong></span></p>
+<p>This equation states that multiplying the matrix <span
+class="math inline"><em>A</em></span> by the eigenvector <span
+class="math inline"><strong>v</strong></span> only scales the vector by
+the eigenvalue <span class="math inline"><em>λ</em></span>.</p>
+<h2 id="characteristic-polynomial">Characteristic Polynomial</h2>
+<p>To find eigenvalues, we solve the characteristic equation:</p>
+<p><span
+class="math display">det (<em>A</em> − <em>λ</em><em>I</em>) = 0</span></p>
+<p>where <span class="math inline"><em>I</em></span> is the identity
+matrix. This polynomial equation of degree <span
+class="math inline"><em>n</em></span> gives us at most <span
+class="math inline"><em>n</em></span> eigenvalues.</p>
+<h2 id="key-properties">Key Properties</h2>
+<ul>
+<li><p><strong>Trace:</strong> The sum of eigenvalues equals the trace
+of the matrix: <span class="math inline">$\sum_{i=1}^{n} \lambda_i =
+\text{tr}(A)$</span></p></li>
+<li><p><strong>Determinant:</strong> The product of eigenvalues equals
+the determinant: <span class="math inline">$\prod_{i=1}^{n} \lambda_i =
+\det(A)$</span></p></li>
+<li><p><strong>Orthogonal matrices:</strong> Eigenvectors of symmetric
+matrices are orthogonal</p></li>
+<li><p><strong>Magnitude:</strong> Eigenvalues indicate how much the
+eigenvector is scaled by the transformation</p></li>
+</ul>
+<h1 id="geometric-interpretation">Geometric Interpretation</h1>
+<p>An eigenvalue-eigenvector pair describes a special direction in the
+vector space. When the matrix <span
+class="math inline"><em>A</em></span> is applied to an eigenvector, it
+only changes the magnitude (by a factor of <span
+class="math inline"><em>λ</em></span>) but not the direction. This
+property makes eigenvalues invaluable in understanding the behavior of
+linear transformations.</p>
+<h1 id="applications-in-machine-learning-and-data-science">Applications
+in Machine Learning and Data Science</h1>
+<h2 id="principal-component-analysis-pca">Principal Component Analysis
+(PCA)</h2>
+<p>PCA is one of the most popular dimensionality reduction techniques.
+It uses eigenvalues and eigenvectors of the covariance matrix to find
+the principal components (directions of maximum variance) in the
+data.</p>
+<p><span class="math display">$$C = \frac{1}{n-1}X^T X$$</span></p>
+<p>The eigenvectors of the covariance matrix <span
+class="math inline"><em>C</em></span> form the principal components, and
+their corresponding eigenvalues represent the variance explained in each
+direction.</p>
+<h2 id="spectral-clustering">Spectral Clustering</h2>
+<p>Spectral clustering uses the eigenvalues and eigenvectors of the
+Laplacian matrix derived from a similarity graph. The eigenvectors
+corresponding to the smallest eigenvalues provide the dimensions for
+clustering.</p>
+<h2 id="google-pagerank">Google PageRank</h2>
+<p>The PageRank algorithm treats the web as a large directed graph and
+uses eigenvalues to determine page importance. The principal eigenvector
+of the transition matrix gives the steady-state distribution of page
+ranks.</p>
+<h2 id="dimensionality-reduction">Dimensionality Reduction</h2>
+<p>By selecting eigenvectors corresponding to the largest eigenvalues,
+we can reduce the dimensionality of data while retaining most of the
+variance, leading to:</p>
+<ul>
+<li><p>Faster training times</p></li>
+<li><p>Reduced memory requirements</p></li>
+<li><p>Prevention of overfitting</p></li>
+<li><p>Improved visualization</p></li>
+</ul>
+<h2 id="covariance-matrix-analysis">Covariance Matrix Analysis</h2>
+<p>In portfolio optimization and risk management, eigenvalues of the
+covariance matrix help identify the principal sources of risk and
+variance in asset returns.</p>
+<h1 id="code-examples">Code Examples</h1>
+<h2 id="computing-eigenvalues-and-eigenvectors-in-python">Computing
+Eigenvalues and Eigenvectors in Python</h2>
+<pre><code>import numpy as np
+from scipy import linalg
+
+# Create a sample matrix
+A = np.array([[4, -2],
+              [-2, 1]])
+
+# Compute eigenvalues and eigenvectors
+eigenvalues, eigenvectors = np.linalg.eig(A)
+
+print(&quot;Eigenvalues:&quot;)
+print(eigenvalues)
+print(&quot;\nEigenvectors:&quot;)
+print(eigenvectors)
+
+# Verify: A @ v = lambda * v
+v = eigenvectors[:, 0]
+lam = eigenvalues[0]
+print(&quot;\nVerification:&quot;)
+print(&quot;A @ v =&quot;, A @ v)
+print(&quot;lambda * v =&quot;, lam * v)</code></pre>
+<h2 id="principal-component-analysis">Principal Component Analysis</h2>
+<pre><code>import numpy as np
+from numpy.linalg import eig
+
+def simple_pca(X, n_components=2):
+    &quot;&quot;&quot;
+    Simple PCA implementation using eigendecomposition
+    
+    Parameters:
+    X: Data matrix (samples x features)
+    n_components: Number of principal components
+    
+    Returns:
+    X_reduced: Transformed data
+    explained_variance: Variance explained by each component
+    &quot;&quot;&quot;
+    # Center the data
+    X_centered = X - np.mean(X, axis=0)
+    
+    # Compute covariance matrix
+    cov_matrix = np.cov(X_centered.T)
+    
+    # Eigendecomposition
+    eigenvalues, eigenvectors = eig(cov_matrix)
+    
+    # Sort by eigenvalues (descending)
+    idx = np.argsort(-eigenvalues)
+    eigenvalues = eigenvalues[idx]
+    eigenvectors = eigenvectors[:, idx]
+    
+    # Select top components
+    components = eigenvectors[:, :n_components]
+    
+    # Transform data
+    X_reduced = X_centered @ components
+    
+    # Explained variance ratio
+    explained_variance = eigenvalues[:n_components] / np.sum(eigenvalues)
+    
+    return X_reduced, explained_variance, components
+
+# Example usage
+np.random.seed(42)
+X = np.random.randn(100, 5)
+X_pca, var_explained, components = simple_pca(X, n_components=2)
+
+print(&quot;Explained Variance Ratio:&quot;, var_explained)
+print(&quot;Reduced data shape:&quot;, X_pca.shape)</code></pre>
+<h2 id="spectral-properties-analysis">Spectral Properties Analysis</h2>
+<pre><code>import numpy as np
+
+# Create a symmetric matrix (common in ML)
+A = np.array([[3, 1, 0],
+              [1, 3, 1],
+              [0, 1, 3]])
+
+# Eigendecomposition
+eigenvalues, eigenvectors = np.linalg.eigh(A)  # eigh for symmetric matrices
+
+print(&quot;Eigenvalues (sorted):&quot;, np.sort(eigenvalues)[::-1])
+print(&quot;\nEigenvector for largest eigenvalue:&quot;)
+print(eigenvectors[:, -1])
+
+# Reconstruct matrix from eigendecomposition
+A_reconstructed = eigenvectors @ np.diag(eigenvalues) @ eigenvectors.T
+print(&quot;\nReconstruction error:&quot;, np.linalg.norm(A - A_reconstructed))</code></pre>
+<h1 id="advantages-of-using-eigenvalue-decomposition">Advantages of
+Using Eigenvalue Decomposition</h1>
+<ol>
+<li><p><strong>Interpretability:</strong> Eigenvectors identify
+important directions in data</p></li>
+<li><p><strong>Efficiency:</strong> Reduces computational complexity in
+high-dimensional problems</p></li>
+<li><p><strong>Noise Reduction:</strong> Filtering small eigenvalues
+removes noise</p></li>
+<li><p><strong>Feature Extraction:</strong> Automatically identifies
+relevant features</p></li>
+<li><p><strong>Stability:</strong> Well-behaved for symmetric
+matrices</p></li>
+</ol>
+<h1 id="limitations-and-considerations">Limitations and
+Considerations</h1>
+<ul>
+<li><p><strong>Computational Cost:</strong> <span
+class="math inline"><em>O</em>(<em>n</em><sup>3</sup>)</span> for
+eigendecomposition of <span
+class="math inline"><em>n</em> × <em>n</em></span> matrices</p></li>
+<li><p><strong>Linear Assumption:</strong> PCA and related methods
+assume linear relationships</p></li>
+<li><p><strong>Interpretation:</strong> Principal components are linear
+combinations, harder to interpret</p></li>
+<li><p><strong>Sensitivity:</strong> Sensitive to scaling;
+standardization is recommended</p></li>
+<li><p><strong>Complex Eigenvalues:</strong> Non-symmetric matrices can
+have complex eigenvalues</p></li>
+</ul>
+<h1 id="practical-recommendations">Practical Recommendations</h1>
+<ul>
+<li><p>Always standardize features before PCA</p></li>
+<li><p>Use efficient implementations (NumPy, SciPy) for large
+datasets</p></li>
+<li><p>Consider approximate methods (SVD, randomized algorithms) for
+very large matrices</p></li>
+<li><p>Examine scree plots to decide on the number of
+components</p></li>
+<li><p>Validate the number of components using cross-validation</p></li>
+<li><p>For real-time systems, consider incremental PCA or online
+learning methods</p></li>
+</ul>
+<h1 id="conclusion">Conclusion</h1>
+<p>Eigenvalues and eigenvectors are powerful mathematical tools that
+enable many important machine learning and data science algorithms. From
+dimensionality reduction to graph-based clustering and portfolio
+optimization, understanding these concepts provides deep insights into
+how data is transformed and analyzed. Whether you’re working with PCA,
+spectral methods, or network analysis, eigenvalue decomposition remains
+a fundamental technique for extracting meaningful patterns from
+data.</p>
+<p>The practical implementations provided in this article demonstrate
+how to apply these concepts using Python libraries. As practitioners,
+it’s essential to understand both the mathematical foundations and
+practical implications of eigenvalue-based methods to effectively
+leverage them in real-world applications.</p>
+<div class="thebibliography">
+<p><span>9</span></p>
+<p>Golub, G. H., &amp; Van Loan, C. F. (2013). <em>Matrix
+computations</em> (4th ed.). Johns Hopkins University Press.</p>
+<p>Hastie, T., Tibshirani, R., &amp; Friedman, J. (2009). <em>The
+elements of statistical learning: Data mining, inference, and
+prediction</em> (2nd ed.). Springer.</p>
+<p>Bishop, C. M. (2006). <em>Pattern recognition and machine
+learning</em>. Springer.</p>
+<p>Jolliffe, I. T. (2002). <em>Principal component analysis</em> (2nd
+ed.). Springer.</p>
+</div>
