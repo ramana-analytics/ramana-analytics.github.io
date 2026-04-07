@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LaTeX Equations Sample - Ramana Analytics</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f8f9fa;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        h1 {
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #34495e;
+            margin-top: 30px;
+        }
+        .equation {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .back-link {
+            display: inline-block;
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .back-link:hover {
+            background-color: #2980b9;
+        }
+    </style>
+    <!-- MathJax Configuration -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+    <header>
+        <h1>LaTeX Equations Sample</h1>
+        <p>Demonstrating mathematical equations using LaTeX rendering</p>
+    </header>
+
+    <section>
+        <h2>Knapsack Problem</h2>
+        <p>The 0/1 Knapsack Problem is a classic optimization problem. Given a set of items, each with a weight and a value, determine the number of each item to include in a collection so that the total weight is less than or equal to a given limit and the total value is as large as possible.</p>
+
+        <div class="equation">
+            <h3>Problem Statement</h3>
+            <p>Maximize: $\sum_{i=1}^{n} v_i x_i$</p>
+            <p>Subject to: $\sum_{i=1}^{n} w_i x_i \leq W$</p>
+            <p>Where: $x_i \in \{0, 1\}$ for all $i$</p>
+        </div>
+
+        <div class="equation">
+            <h3>Dynamic Programming Solution</h3>
+            <p>$K[i][w] = \max \begin{cases} K[i-1][w] & \text{if } w_i > w \\ \max(K[i-1][w], K[i-1][w - w_i] + v_i) & \text{otherwise} \end{cases}$</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>Linear Regression</h2>
+        <p>Linear regression is a linear approach to modeling the relationship between a scalar response and one or more explanatory variables.</p>
+
+        <div class="equation">
+            <h3>Hypothesis Function</h3>
+            <p>$h_\theta(x) = \theta_0 + \theta_1 x_1 + \theta_2 x_2 + \dots + \theta_n x_n$</p>
+            <p>Or in vector form: $h_\theta(x) = \theta^T x$</p>
+        </div>
+
+        <div class="equation">
+            <h3>Cost Function (Mean Squared Error)</h3>
+            <p>$J(\theta) = \frac{1}{2m} \sum_{i=1}^{m} (h_\theta(x^{(i)}) - y^{(i)})^2$</p>
+        </div>
+
+        <div class="equation">
+            <h3>Gradient Descent Update</h3>
+            <p>$\theta_j := \theta_j - \alpha \frac{\partial}{\partial \theta_j} J(\theta)$</p>
+            <p>$\frac{\partial}{\partial \theta_j} J(\theta) = \frac{1}{m} \sum_{i=1}^{m} (h_\theta(x^{(i)}) - y^{(i)}) x_j^{(i)}$</p>
+        </div>
+
+        <div class="equation">
+            <h3>Normal Equation</h3>
+            <p>$\theta = (X^T X)^{-1} X^T y$</p>
+        </div>
+    </section>
+
+    <a href="index.htm" class="back-link">← Back to Portfolio</a>
+
+    <script src="counter.js"></script>
+</body>
+</html>
