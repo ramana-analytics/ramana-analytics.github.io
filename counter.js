@@ -2,7 +2,7 @@ function initPageCounter() {
   const counter = document.querySelector('[data-page-id]');
   if (!counter) return;
   const pageId = counter.getAttribute('data-page-id');
-  const apiUrl = `https://api.countapi.xyz/hit/ramana-analytics-github-io/${pageId}`;
+  const storageKey = `page-counter-${pageId}`;
 
   const style = document.createElement('style');
   style.textContent = `
@@ -11,18 +11,16 @@ function initPageCounter() {
   `;
   document.head.appendChild(style);
 
-  fetch(apiUrl)
-    .then((response) => response.json())
-    .then((data) => {
-      if (data && typeof data.value === 'number') {
-        counter.textContent = data.value.toLocaleString();
-      } else {
-        counter.textContent = 'N/A';
-      }
-    })
-    .catch(() => {
-      counter.textContent = 'N/A';
-    });
+  try {
+    const storedValue = localStorage.getItem(storageKey);
+    let count = storedValue ? parseInt(storedValue, 10) : 0;
+    if (Number.isNaN(count)) count = 0;
+    count += 1;
+    localStorage.setItem(storageKey, count);
+    counter.textContent = count.toLocaleString();
+  } catch (error) {
+    counter.textContent = 'N/A';
+  }
 }
 
 document.addEventListener('DOMContentLoaded', initPageCounter);
