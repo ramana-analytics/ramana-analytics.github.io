@@ -123,6 +123,27 @@
       transform: translateY(-6px);
     }
 
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.6em;
+      margin-top: 1em;
+    }
+    .project-card {
+      background: #f7fbff;
+      border: 1px solid #d9e7f5;
+      padding: 1.8em;
+      border-radius: 16px;
+      transition: transform 0.2s;
+    }
+    .project-card:hover {
+      transform: translateY(-6px);
+    }
+    .project-card h3 {
+      margin-top: 0;
+      color: #004d7a;
+    }
+
     /* CTA */
     .cta {
       text-align: center;
@@ -158,7 +179,9 @@
   <strong>Venkataramana</strong>
   <div>
     <a href="#focus">Focus</a>
-    <a href="#approach">Approach</a>
+    <a href="#projects">Projects</a>
+    <a href="#academic">Academic</a>
+    <a href="#experience">Experience</a>
     <a href="#connect">Connect</a>
   </div>
 </nav>
@@ -207,6 +230,114 @@
     <a href="https://www.linkedin.com/in/venkataramana/" target="_blank">LinkedIn</a>
     <a href="mailto:dr.ramana@outlook.com">Contact</a>
   </div>
+
+  <h2 id="projects">Project Portfolio</h2>
+  <p>Projects organized by broad data science categories: image, text, tabulated analytics, and time-series solutions.</p>
+  <div class="projects">
+    <div class="project-card">
+      <h3>Health Insurance Telehealth Platform</h3>
+      <p><strong>Broad Category:</strong> Image + Text + Tabulated Analytics</p>
+      <p><strong>Role:</strong> Senior Delivery Manager, AI Tower</p>
+      <p><strong>Duration:</strong> Feb 2021 – Mar 2022</p>
+      <p><strong>Project Details:</strong> Built a complete AI-enabled physician consultation platform for a health insurance provider, including telehealth scheduling, video conferencing, real-time alerts, and diagnostics.</p>
+      <p><strong>Key Work:</strong> X-ray/CT disease detection, pathology and vitals analytics, live video anxiety detection, nail-image health screening, NLP chatbot for FAQs, and vital sensor alerting for post-operative discharge.</p>
+      <p><strong>Technology:</strong> Python, TensorFlow, Flask, React, AWS Lambda, Glue, SageMaker, NLP, computer vision.</p>
+      <p><strong>Learn More:</strong> <a href="health-insurance-telehealth-platform.htm">View project page</a></p>
+    </div>
+
+    <div class="project-card">
+      <h3>Telematics &amp; 3D Asset Detection</h3>
+      <p><strong>Broad Category:</strong> Image</p>
+      <p><strong>Role:</strong> Delivery Head / Principal Data Scientist</p>
+      <p><strong>Duration:</strong> Jan 2018 – Jan 2021</p>
+      <p><strong>Project Details:</strong> Developed advanced computer vision pipelines for satellite and mobile mapping imagery, and 3D LiDAR asset detection for transportation, utilities and infrastructure clients.</p>
+      <p><strong>Key Work:</strong> Road marking and building footprint extraction, land-cover classification, POI detection, face/number-plate blurring, and LiDAR-based vegetation and wear detection using PointNet/Open3D.</p>
+      <p><strong>Technology:</strong> Python, TensorFlow, Open3D, PointNet, Azure DataBricks.</p>
+      <p><strong>Learn More:</strong> <a href="telematics-3d-asset-detection.htm">View project page</a></p>
+    </div>
+
+    <div class="project-card">
+      <h3>Elevator &amp; Escalator Predictive Maintenance</h3>
+      <p><strong>Broad Category:</strong> Tabulated Analytics + Time Series</p>
+      <p><strong>Role:</strong> Principal Data Scientist</p>
+      <p><strong>Duration:</strong> Jan 2018 – Jan 2021</p>
+      <p><strong>Project Details:</strong> Delivered a predictive maintenance platform for 150K+ elevators and escalators across USA, Germany and Spain, using operational and historical maintenance data.</p>
+      <p><strong>Key Work:</strong> Created daily elevator-level features, built supervised models for failure prediction, and delivered alerts and dashboards for maintenance teams.</p>
+      <p><strong>Technology:</strong> Azure Databricks, Data Lake, ADF, Python, PySpark, Tableau, Power BI, Azure CI/CD.</p>
+      <p><strong>Learn More:</strong> <a href="elevator-escalator-predictive-maintenance.htm">View project page</a></p>
+    </div>
+
+    <div class="project-card">
+      <h3>Aeroengine Prognostics</h3>
+      <p><strong>Broad Category:</strong> Time Series + Text</p>
+      <p><strong>Role:</strong> Principal Data Scientist</p>
+      <p><strong>Duration:</strong> Jan 2018 – Jul 2019</p>
+      <p><strong>Project Details:</strong> Built prognostic engines for aeroengine combustion distress prediction and diagnosis, combining sensor time-series data with text extraction capabilities.</p>
+      <p><strong>Key Work:</strong> Combustion distress forecasting, real-time diagnostics, and document/image-based text extraction for asset information capture.</p>
+      <p><strong>Technology:</strong> Python, ML models, image text extraction, advanced analytics.</p>
+      <p><strong>Learn More:</strong> <a href="aeroengine-prognostics.htm">View project page</a></p>
+    </div>
+
+    <div class="project-card">
+      <h3>Consulting &amp; Optimization Projects</h3>
+      <p><strong>Broad Category:</strong> Tabulated Analytics + Optimization</p>
+      <p><strong>Role:</strong> Principal Data Scientist / Lead Data Scientist</p>
+      <p><strong>Duration:</strong> 2015 – 2018</p>
+      <p><strong>Project Details:</strong> Delivered optimization and analytics solutions across coal procurement, training scheduling, freight routing, and telecom asset management.</p>
+      <p><strong>Key Work:</strong> Mixed-integer procurement planning for metal manufacturing, training management optimization for airline operators, demand forecasting for FMCG clients, crew scheduling, and telecom alarm management.</p>
+      <p><strong>Technology:</strong> Python, GLPK, Java, optimization solvers.</p>
+      <p><strong>Learn More:</strong> <a href="consulting-optimization-projects.htm">View project page</a></p>
+    </div>
+  </div>
+
+  <h2 id="academic">Academic Projects</h2>
+  <p>Academic research and master’s projects with a focus on optimization and decision science.</p>
+  <div class="projects">
+    <div class="project-card">
+      <h3>M.Tech: Stochastic Transportation Optimization</h3>
+      <p><strong>Broad Category:</strong> Tabulated Analytics + Optimization</p>
+      <p><strong>Project Details:</strong> Developed stochastic models for transporting perishable items under uncertainty, using chance-constrained programming to balance cost, time, and decay.</p>
+      <p><strong>Key Work:</strong> Designed algorithms for multi-objective stochastic transportation, implemented MATLAB prototypes, and validated performance for food supply-chain networks.</p>
+      <p><strong>Learn More:</strong> <a href="masters-stochastic-transportation.htm">View project page</a></p>
+    </div>
+    <div class="project-card">
+      <h3>Ph.D.: Parallel Batch Processor Scheduling</h3>
+      <p><strong>Broad Category:</strong> Tabulated Analytics + Optimization</p>
+      <p><strong>Project Details:</strong> Researched scheduling methods for parallel batch processors, minimizing total weighted tardiness and completion time with ant colony optimization.</p>
+      <p><strong>Key Work:</strong> Created metaheuristics, compared results with existing benchmarks, and implemented solutions in C and LINGO for large-scale scheduling problems.</p>
+      <p><strong>Learn More:</strong> <a href="phd-parallel-batch-scheduling.htm">View project page</a></p>
+    </div>
+    <div class="project-card">
+      <h3>Grid Computing Scheduling Research</h3>
+      <p><strong>Broad Category:</strong> Tabulated Analytics + Optimization</p>
+      <p><strong>Project Details:</strong> Surveyed scheduling problems in grid computing and proposed metaheuristic architectures to optimize resource allocation in distributed systems.</p>
+      <p><strong>Key Work:</strong> Developed solution architecture, evaluated scheduling algorithms, and presented findings during internship at GE John F. Welch Technology Centre.</p>
+      <p><strong>Learn More:</strong> <a href="grid-computing-scheduling.htm">View project page</a></p>
+    </div>
+  </div>
+
+  <h2>Selected Achievements</h2>
+  <ul>
+    <li>Mark of Excellence Award, Cyient (2020) — recognized as best employee across 14,000 associates.</li>
+    <li>Emerging Leader Award, Cyient (2016) — recognized for leadership in AI delivery and innovation.</li>
+    <li>Multiple peer-reviewed publications in scheduling, optimization and decision science.</li>
+    <li>Speaker at Computer Vision DevCon 2020 and DSI Annual Conference 2021.</li>
+  </ul>
+
+  <h2 id="experience">Professional Experience</h2>
+  <ul>
+    <li><strong>American Express</strong> – Senior Manager, Data Science (Jan 2023 – Present)</li>
+    <li><strong>Legato Health Technologies</strong> – Senior Delivery Manager, AI Tower (Feb 2021 – Mar 2022)</li>
+    <li><strong>Cyient Insights</strong> – Delivery Head / Principal Data Scientist (Jan 2018 – Jan 2021)</li>
+    <li><strong>Thyssenkrupp Elevator</strong> – Principal Data Scientist (Jul 2019 – Jan 2021)</li>
+    <li><strong>Pratt &amp; Whitney</strong> – Principal Data Scientist (Jan 2018 – Jul 2019)</li>
+  </ul>
+
+  <h2>Contact</h2>
+  <p><strong>Email:</strong> <a href="mailto:dr.ramana@outlook.com">dr.ramana@outlook.com</a></p>
+  <p><strong>Phone:</strong> +1 202 509 7562</p>
+  <p><strong>Location:</strong> Glen Allen, Virginia</p>
+
 
 </section>
 
