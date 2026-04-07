@@ -1,3 +1,4 @@
+/*
 function initPageCounter() {
   const counter = document.querySelector('[data-page-id]');
   if (!counter) return;
@@ -24,3 +25,4 @@ function initPageCounter() {
 }
 
 document.addEventListener('DOMContentLoaded', initPageCounter);
+*/
