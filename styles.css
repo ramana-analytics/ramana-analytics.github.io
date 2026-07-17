@@ -43,6 +43,13 @@ body {
   overflow-x: hidden;
 }
 img { max-width: 100%; display: block; }
+a.skip-link {
+  position: absolute; left: -9999px; top: auto; width: 1px; height: 1px; overflow: hidden;
+}
+a.skip-link:focus {
+  left: 1rem; top: 1rem; width: auto; height: auto; padding: 0.5rem 0.8rem; background: var(--bg-card);
+  border: 1px solid var(--border); border-radius: 6px; z-index: 9999; color: var(--text-2);
+}
 a { color: var(--accent-2); text-decoration: none; transition: color var(--t); }
 a:hover { color: #fff; }
 ul { list-style: none; }
