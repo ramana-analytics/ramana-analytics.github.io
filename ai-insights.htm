@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>AI Insights — RamanaAI</title>
+  <title>GPU Distributed Computing Series — AI Insights | RamanaAI</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="AI Insights — Coming Soon. Articles on Enterprise AI, Responsible AI, GPU Computing, LLM Evaluation, and Agentic AI from Ramana Miryala, PhD.">
+  <meta name="description" content="A research-oriented, practical series on GPU distributed computing: GPU fundamentals, RAPIDS, Dask, Spark RAPIDS, XGBoost, and production-scale systems.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=STIX+Two+Text:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
@@ -22,7 +22,7 @@
       <li><a href="about.htm">About</a></li>
       <li><a href="enterprise-ai.htm">Enterprise AI</a></li>
       <li><a href="genai-lab.htm">GenAI Lab</a></li>
-      <li><a href="ai-insights.htm">AI Insights <span class="nav-badge">Soon</span></a></li>
+      <li><a href="ai-insights.htm">AI Insights <span class="nav-badge">Series</span></a></li>
       <li><a href="speaking.htm">Speaking</a></li>
       <li><a href="resume.htm">Resume</a></li>
       <li><a href="contact.htm" class="nav-cta">Contact</a></li>
@@ -35,73 +35,65 @@
   </div>
 </nav>
 
-<!-- COMING SOON HERO -->
-<section style="min-height:100vh;display:flex;align-items:center;padding-top:70px;background:radial-gradient(ellipse 60% 50% at 50% 0%,rgba(37,99,235,0.15) 0%,transparent 70%),var(--bg);">
+<section id="main-content" class="page-hero">
   <div class="container">
-    <div style="max-width:700px;margin:0 auto;text-align:center;" class="fade-in">
-      <div style="display:inline-flex;align-items:center;gap:0.5rem;font-size:0.72rem;font-weight:700;letter-spacing:0.13em;text-transform:uppercase;color:var(--accent-2);background:rgba(56,189,248,0.08);border:1px solid rgba(56,189,248,0.2);padding:0.4em 1em;border-radius:20px;margin-bottom:2.5rem;">
-        <span style="width:6px;height:6px;border-radius:50%;background:var(--accent-2);animation:pulse-dot 2s ease-in-out infinite;display:inline-block;"></span>
-        Coming Soon
-      </div>
-
-      <h1 style="margin-bottom:1.2rem;">AI Insights</h1>
-      <p style="font-size:1.08rem;max-width:560px;margin:0 auto 3rem;">
-        Practical articles on building Enterprise AI — written from 19 years of production experience, not just theory.
-        Real patterns, real trade-offs, real lessons.
-      </p>
-
-      <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:3rem;margin-bottom:3rem;">
-        <h2 style="font-size:1.2rem;margin-bottom:1.8rem;color:var(--text-2);">Topics I Plan to Write About</h2>
-        <div class="grid-2" style="gap:1rem;text-align:left;">
-          <div style="display:flex;align-items:flex-start;gap:0.8rem;padding:1rem;background:var(--bg-subtle);border-radius:8px;">
-            <span style="color:var(--accent-2);font-size:1.1rem;margin-top:0.1rem;">→</span>
-            <div>
-              <p style="font-weight:600;font-size:0.9rem;color:var(--text);margin-bottom:0.2rem;">Building Enterprise AI Platforms</p>
-              <p style="font-size:0.8rem;">Architecture patterns, governance, and lessons from building at scale.</p>
-            </div>
-          </div>
-          <div style="display:flex;align-items:flex-start;gap:0.8rem;padding:1rem;background:var(--bg-subtle);border-radius:8px;">
-            <span style="color:var(--accent-2);font-size:1.1rem;margin-top:0.1rem;">→</span>
-            <div>
-              <p style="font-weight:600;font-size:0.9rem;color:var(--text);margin-bottom:0.2rem;">Enterprise RAG in Production</p>
-              <p style="font-size:0.8rem;">Moving beyond naive RAG to robust, evaluated, enterprise-grade retrieval.</p>
-            </div>
-          </div>
-          <div style="display:flex;align-items:flex-start;gap:0.8rem;padding:1rem;background:var(--bg-subtle);border-radius:8px;">
-            <span style="color:var(--accent-2);font-size:1.1rem;margin-top:0.1rem;">→</span>
-            <div>
-              <p style="font-weight:600;font-size:0.9rem;color:var(--text);margin-bottom:0.2rem;">GPU Optimization for Enterprise AI</p>
-              <p style="font-size:0.8rem;">Inference optimization, batching strategies, and GPU platform design.</p>
-            </div>
-          </div>
-          <div style="display:flex;align-items:flex-start;gap:0.8rem;padding:1rem;background:var(--bg-subtle);border-radius:8px;">
-            <span style="color:var(--accent-2);font-size:1.1rem;margin-top:0.1rem;">→</span>
-            <div>
-              <p style="font-weight:600;font-size:0.9rem;color:var(--text);margin-bottom:0.2rem;">Responsible AI at Scale</p>
-              <p style="font-size:0.8rem;">Governance frameworks, bias detection, explainability, and AI risk management.</p>
-            </div>
-          </div>
-          <div style="display:flex;align-items:flex-start;gap:0.8rem;padding:1rem;background:var(--bg-subtle);border-radius:8px;">
-            <span style="color:var(--accent-2);font-size:1.1rem;margin-top:0.1rem;">→</span>
-            <div>
-              <p style="font-weight:600;font-size:0.9rem;color:var(--text);margin-bottom:0.2rem;">Agentic AI Design Patterns</p>
-              <p style="font-size:0.8rem;">Building reliable, safe, enterprise-grade agentic systems that actually work.</p>
-            </div>
-          </div>
-          <div style="display:flex;align-items:flex-start;gap:0.8rem;padding:1rem;background:var(--bg-subtle);border-radius:8px;">
-            <span style="color:var(--accent-2);font-size:1.1rem;margin-top:0.1rem;">→</span>
-            <div>
-              <p style="font-weight:600;font-size:0.9rem;color:var(--text);margin-bottom:0.2rem;">LLM Evaluation Frameworks</p>
-              <p style="font-size:0.8rem;">Practical evaluation strategies for production LLM systems beyond benchmarks.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <a href="contact.htm" class="btn btn-primary btn-lg">Get Notified When I Publish</a>
-    </div>
+    <p class="section-label">Research &amp; Engineering Series</p>
+    <h1>GPU Distributed Computing</h1>
+    <p>A 12-part learning path from GPU execution fundamentals to distributed data science and production machine learning—with concepts, runnable examples, performance measurement, and practical trade-offs.</p>
   </div>
 </section>
+
+<main class="section">
+  <div class="container">
+    <p class="section-label">Series Outline</p>
+    <h2 class="section-title">From GPU Fundamentals to Production Systems</h2>
+    <p class="section-desc">The sequence builds from hardware and parallel execution to distributed frameworks, then applies those ideas to machine learning workloads. Published installments will open as standalone, shareable articles.</p>
+
+    <div class="series-grid grid-3 fade-parent">
+      <section class="series-part card" aria-labelledby="series-part-1">
+        <p class="series-part-kicker">Part I · Articles 01–04</p>
+        <h3 id="series-part-1">GPU Foundations</h3>
+        <ol class="series-articles">
+          <li><h4>Why GPUs for Data and Machine Learning? <span class="article-status">Planned</span></h4><p>Compare CPU and GPU workloads, parallelism, throughput, and cases where GPUs are not the right choice.</p></li>
+          <li><h4>How GPUs Execute Work <span class="article-status">Planned</span></h4><p>Understand CUDA grids, blocks, threads, SIMT execution, kernels, and the GPU memory hierarchy.</p></li>
+          <li><h4>The Real Cost of GPU Computing <span class="article-status">Planned</span></h4><p>Explore host-to-device transfers, memory limits, batching, utilization, and profiling fundamentals.</p></li>
+          <li><h4>From One GPU to Many <span class="article-status">Planned</span></h4><p>Distinguish scale-up from scale-out, and examine partitioning, communication, synchronization, and failures.</p></li>
+        </ol>
+      </section>
+
+      <section class="series-part card" aria-labelledby="series-part-2">
+        <p class="series-part-kicker">Part II · Articles 05–08</p>
+        <h3 id="series-part-2">Distributed GPU Data Processing</h3>
+        <ol class="series-articles" start="5">
+          <li><h4>RAPIDS: A GPU Data Science Ecosystem <span class="article-status">Planned</span></h4><p>Meet cuDF, cuML, cuGraph, and RMM, and see how they relate to familiar Python data-science tools.</p></li>
+          <li><h4>How Dask Distributes Work <span class="article-status">Planned</span></h4><p>Learn about tasks, partitions, schedulers, workers, and what changes when workers have GPUs.</p></li>
+          <li><h4>Scaling RAPIDS with Dask <span class="article-status">Planned</span></h4><p>Examine Dask-cuDF, multi-GPU execution, partition sizing, shuffles, and common bottlenecks.</p></li>
+          <li><h4>Apache Spark with GPUs <span class="article-status">Planned</span></h4><p>Understand the RAPIDS Accelerator for Apache Spark, supported operations, GPU execution, fallback, and compatibility.</p></li>
+        </ol>
+      </section>
+
+      <section class="series-part card" aria-labelledby="series-part-3">
+        <p class="series-part-kicker">Part III · Articles 09–12</p>
+        <h3 id="series-part-3">Machine Learning in Production</h3>
+        <ol class="series-articles" start="9">
+          <li><h4>XGBoost on a GPU <span class="article-status">Planned</span></h4><p>Cover tree boosting, GPU training, data formats, memory use, and careful CPU/GPU benchmarking.</p></li>
+          <li><h4>Distributed XGBoost <span class="article-status">Planned</span></h4><p>Explore multi-GPU and multi-node training, Dask integration, data partitioning, and scaling limits.</p></li>
+          <li><h4>Choosing the Right Stack <span class="article-status">Planned</span></h4><p>Compare single-GPU RAPIDS, Dask, Spark with its RAPIDS Accelerator, and distributed XGBoost by workload and operational needs.</p></li>
+          <li><h4>A Reproducible End-to-End Case Study <span class="article-status">Planned</span></h4><p>Follow a dataset from ingestion through processing, training, measurement, and deployment planning.</p></li>
+        </ol>
+      </section>
+    </div>
+
+    <aside class="series-method card mt-4" aria-label="Article approach">
+      <p class="section-label">Article Approach</p>
+      <h2>Concepts, code, measurements, and trade-offs</h2>
+      <p>Each installment will connect the underlying systems concepts to a practical example, measure performance against a meaningful baseline, and discuss limitations—including data movement, unsupported operations, cost, and operational complexity.</p>
+      <div class="tags">
+        <span class="tag">GPU Fundamentals</span><span class="tag">CUDA</span><span class="tag">RAPIDS</span><span class="tag">Dask</span><span class="tag">Spark</span><span class="tag">XGBoost</span>
+      </div>
+    </aside>
+  </div>
+</main>
 
 <footer class="footer">
   <div class="container">
