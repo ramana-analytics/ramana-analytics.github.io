@@ -114,8 +114,8 @@
     if (!nav) return;
     window.addEventListener('scroll', () => {
       nav.style.background = window.scrollY > 40
-        ? 'rgba(11,18,32,0.97)'
-        : 'rgba(11,18,32,0.85)';
+        ? 'rgba(247,245,239,0.985)'
+        : 'rgba(247,245,239,0.94)';
     }, { passive: true });
   }
 
