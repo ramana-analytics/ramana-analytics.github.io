@@ -110,19 +110,6 @@
     .section-desc { color: var(--text-muted); max-width: 680px; margin-bottom: 2rem; }
 
     /* ==============================
-       6. About
-       ============================== */
-    .about-grid { display: grid; grid-template-columns: 160px 1fr; gap: 2rem; align-items: center; }
-    .profile-img {
-      width: 160px; height: 160px; border-radius: 50%; object-fit: cover;
-      border: 4px solid var(--accent-soft); box-shadow: var(--shadow);
-      background: var(--bg-subtle); display: flex; align-items: center; justify-content: center;
-      font-size: 2rem; color: var(--text-muted);
-    }
-    .about-text h2 { margin-bottom: 0.6rem; }
-    .about-text p { color: var(--text-muted); max-width: 700px; }
-
-    /* ==============================
        7. Skill Index (Accordion)
        ============================== */
     .accordion { display: grid; gap: 0.8rem; }
@@ -239,8 +226,6 @@
        12. Responsive
        ============================== */
     @media (max-width: 768px) {
-      .about-grid { grid-template-columns: 1fr; text-align: center; }
-      .profile-img { margin: 0 auto; }
       .nav-links { display: none; }
     }
   </style>
@@ -274,20 +259,6 @@
     <div class="container">
       <h1>AI/ML Learning Tracker</h1>
       <p class="subtitle">My Journey to Master Modern AI, ML, GenAI, NLP, CV, IoT, and Advanced Modeling</p>
-    </div>
-  </section>
-
-  <!-- ==============================
-       ABOUT ME
-       ============================== -->
-  <section id="about">
-    <div class="container about-grid">
-      <div class="profile-img" aria-label="Profile image placeholder">👤</div>
-      <div class="about-text">
-        <p class="section-label">About Me</p>
-        <h2 class="section-title">Venkataramana</h2>
-        <p>I am Venkataramana, a Senior Manager in Enterprise AI Platforms &amp; AI Research. This webpage tracks my continuous learning across AI, ML, GenAI, NLP, Computer Vision, IoT, Graph ML, and more.</p>
-      </div>
     </div>
   </section>
 
