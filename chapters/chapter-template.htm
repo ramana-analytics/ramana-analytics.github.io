@@ -11,20 +11,27 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=STIX+Two+Text:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../../assets/learning.css">
+
+  <!-- MathJax: renders $...$ and $$...$$ LaTeX math in the Markdown content -->
+  <script>
+    MathJax = {
+      tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$'], ['\\[', '\\]']] },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
 </head>
 <body>
 
   <!-- ==========================================================
-       CHAPTER TEMPLATE — copy this file into chapters/<area>/
-       1. Replace all [BRACKETED] text with your content.
-       2. Set the data-topic IDs to match the tracker
-          (see "Topic ID map" in chapters/README.md).
-       3. Change robots to "index, follow" and delete this note.
-       4. Link the chapter card in learning-tracker.htm.
-       Styling, theme toggle, and progress sync come from the
-       shared assets — you only write the content below.
+       CHAPTER TEMPLATE — copy into chapters/<area>/<topic>.htm
+       1. Fill in the title, description, kicker, h1, and deck above/below.
+       2. Write the chapter as Markdown + LaTeX in the block below.
+       3. Set data-topic-prefix to the category letter (see chapters/README.md).
+       4. Change robots to "index, follow" and delete this note.
+       5. Link the chapter card in learning-tracker.htm.
        ========================================================== -->
-  <div class="author-note"><strong>Author note:</strong> Replace the [placeholders] with your content, set the topic IDs, change robots to index/follow, delete this note, and link this page from the Chapters section of learning-tracker.htm.</div>
+  <div class="author-note"><strong>Author note:</strong> Write your chapter in Markdown below ($...$ for LaTeX math), set the topic prefix, change robots to index/follow, delete this note, and link this page from learning-tracker.htm.</div>
 
   <header class="site-header">
     <div class="header-inner">
@@ -46,49 +53,44 @@
       </div>
     </header>
 
-    <div class="chapter-body">
+    <!-- ==========================================================
+         WRITE YOUR CHAPTER HERE — Markdown + LaTeX.
+         ## headings, **bold**, *italic*, > quotes, ``` code fences,
+         $inline math$, $$display math$$, - [ ] trackable checkboxes.
+         ========================================================== -->
+    <div class="chapter-body" id="chapter-content"></div>
+    <script type="text/markdown" id="chapter-md" data-topic-prefix="x">
+## 1. Overview
 
-      <section id="overview">
-        <h2>1. Overview</h2>
-        <p>[What this topic is, why it matters, where it's used in practice.]</p>
-      </section>
+[What this topic is, why it matters, where it's used in practice.]
 
-      <section id="topics">
-        <h2>2. Topics Covered</h2>
-        <p>Tick each topic when you've learned it — this syncs with the main tracker.</p>
-        <ul class="topic-check">
-          <!-- Use the real tracker IDs for this category, e.g. a2, a3 ... -->
-          <li><label><input type="checkbox" data-topic="x1"><span>[Topic 1]</span></label></li>
-          <li><label><input type="checkbox" data-topic="x2"><span>[Topic 2]</span></label></li>
-        </ul>
-      </section>
+## 2. Topics Covered
 
-      <section id="concepts">
-        <h2>3. Key Concepts</h2>
-        <p>[Core ideas and intuition, in your own words.]</p>
-        <blockquote>[A key principle worth remembering.]</blockquote>
-      </section>
+Tick each topic when you've learned it — this syncs with the main tracker.
 
-      <section id="examples">
-        <h2>4. Examples &amp; Code</h2>
-        <p>[A minimal reproducible example, with setup and what to observe.]</p>
-        <pre><code># Example code here
-</code></pre>
-      </section>
+- [ ] [Topic 1]
+- [ ] [Topic 2]
 
-      <section id="resources">
-        <h2>5. Resources</h2>
-        <ul>
-          <li>[Paper / course / repo / video — with link]</li>
-        </ul>
-      </section>
+## 3. Key Concepts
 
-      <section id="notes">
-        <h2>6. My Notes</h2>
-        <p>[Personal takeaways, gotchas, questions to revisit, links to other chapters.]</p>
-      </section>
+[Core ideas and intuition, in your own words.]
 
-    </div>
+> [A key principle worth remembering.]
+
+## 4. Examples & Code
+
+```python
+# Example code here
+```
+
+## 5. Resources
+
+- [Paper / course / repo / video — with link]
+
+## 6. My Notes
+
+[Personal takeaways, gotchas, questions to revisit, links to other chapters.]
+    </script>
 
     <nav class="chapter-nav" aria-label="Chapter navigation">
       <a href="#">← Chapter [NN−1]: [PREV TITLE]</a>
@@ -102,6 +104,8 @@
     </div>
   </footer>
 
+  <script src="https://cdn.jsdelivr.net/npm/marked@12/marked.min.js"></script>
+  <script src="../../assets/learning-md.js"></script>
   <script src="../../assets/learning.js"></script>
 </body>
 </html>

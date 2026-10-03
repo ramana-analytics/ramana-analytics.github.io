@@ -84,3 +84,22 @@ a:hover { text-decoration: underline; }
 
 /* ==== Footer ==== */
 .site-footer { border-top: 1px solid var(--border); padding: 2rem 0; text-align: center; color: var(--text-muted); font-size: 0.84rem; }
+
+/* ==== Markdown-rendered chapters ==== */
+.chapter-body > h2 { font-size: 1.5rem; margin: 2.4rem 0 0.7rem; }
+.chapter-body > h2:first-child { margin-top: 0; }
+.chapter-body > h3 { font-size: 1.15rem; margin: 1.4rem 0 0.5rem; }
+.chapter-body > p + p { margin-top: 0.9rem; }
+.chapter-body > blockquote { margin: 1.3rem 0; padding: 0.6rem 1.1rem; border-left: 3px solid var(--accent); background: var(--bg-subtle); font-style: italic; }
+.chapter-body > pre { overflow-x: auto; margin: 1.2rem 0; padding: 1.1rem; background: #202a33; color: #f7f5ef; border-radius: 6px; font: 0.85rem/1.6 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+
+/* Markdown task lists ("- [ ]") styled like the topic checklist */
+.chapter-body ul:has(input[type="checkbox"]) { list-style: none; padding-left: 0; }
+.chapter-body li:has(> input[type="checkbox"]) {
+  display: flex; align-items: center; gap: 0.6rem;
+  padding: 0.55rem 0.8rem; margin: 0.5rem 0;
+  background: var(--bg-elev); border: 1px solid var(--border); border-radius: 8px;
+}
+.chapter-body li > input[type="checkbox"] { accent-color: var(--accent); width: 15px; height: 15px; cursor: pointer; flex-shrink: 0; }
+.chapter-body li > input[type="checkbox"]:checked { color: var(--text-muted); }
+.chapter-body li:has(> input:checked) { color: var(--text-muted); text-decoration: line-through; text-decoration-color: var(--accent); }

@@ -10,6 +10,15 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=STIX+Two+Text:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../../assets/learning.css">
+
+  <!-- MathJax: renders $...$ and $$...$$ LaTeX math in the Markdown content -->
+  <script>
+    MathJax = {
+      tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$'], ['\\[', '\\]']] },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
 </head>
 <body>
 
@@ -33,92 +42,112 @@
       </div>
     </header>
 
-    <div class="chapter-body">
+    <!-- ==========================================================
+         CHAPTER CONTENT — written in Markdown + LaTeX.
+         Edit the block below; no HTML knowledge needed.
+         Checkbox items ("- [ ]") sync with the tracker via
+         data-topic-prefix="a" → a1, a2, ... in order.
+         ========================================================== -->
+    <div class="chapter-body" id="chapter-content"></div>
+    <script type="text/markdown" id="chapter-md" data-topic-prefix="a">
+## 1. Overview
 
-      <section id="overview">
-        <h2>1. Overview</h2>
-        <p>A Large Language Model (LLM) is a neural network trained to predict the next token in a sequence — at massive scale. That single sentence hides decades of ideas: the artificial neuron, gradient-based learning, recurrent networks for sequences, the attention mechanism, and finally the Transformer architecture.</p>
-        <p>Understanding an LLM without these foundations is like reading the last chapter of a novel first. This chapter climbs the ladder one rung at a time, so that when we reach GPT-style models, every component feels inevitable rather than magical.</p>
-        <blockquote>Predict the next token. Everything else in an LLM — architecture, training data, scale — exists to do that one thing extraordinarily well.</blockquote>
-      </section>
+A Large Language Model (LLM) is a neural network trained to predict the next token in a sequence — at massive scale. That single sentence hides decades of ideas: the artificial neuron, gradient-based learning, recurrent networks for sequences, the attention mechanism, and finally the Transformer architecture.
 
-      <section id="ladder">
-        <h2>2. The Concept Ladder</h2>
-        <p>The path from a single neuron to an LLM. Each step builds directly on the previous one.</p>
-        <div class="ladder">
-          <div class="rung"><span class="num">1</span><div><h4>The Artificial Neuron</h4><p>A weighted sum plus a non-linear activation: y = f(w·x + b). The atomic unit of every neural network.</p></div></div>
-          <div class="rung"><span class="num">2</span><div><h4>Multilayer Perceptron (MLP)</h4><p>Stacked layers of neurons learn hierarchical features. Trained by backpropagation and gradient descent.</p></div></div>
-          <div class="rung"><span class="num">3</span><div><h4>Recurrent Networks (RNN / LSTM / GRU)</h4><p>Networks with memory: a hidden state carried across time steps lets them process sequences like text.</p></div></div>
-          <div class="rung"><span class="num">4</span><div><h4>Seq2Seq &amp; Attention</h4><p>Encoder–decoder models for translation; attention lets the decoder focus on the most relevant input positions.</p></div></div>
-          <div class="rung"><span class="num">5</span><div><h4>The Transformer (2017)</h4><p>"Attention Is All You Need" — recurrence removed entirely; self-attention + feed-forward layers, fully parallelizable.</p></div></div>
-          <div class="rung"><span class="num">6</span><div><h4>Large Language Models</h4><p>Transformers scaled up: billions of parameters, trillions of tokens, pretrained then aligned (instruction tuning, RLHF).</p></div></div>
-        </div>
-      </section>
+Understanding an LLM without these foundations is like reading the last chapter of a novel first. This chapter climbs the ladder one rung at a time, so that when we reach GPT-style models, every component feels inevitable rather than magical.
 
-      <section id="foundations">
-        <h2>3. Foundations: The Basic Neural Network</h2>
-        <h3>3.1 The artificial neuron</h3>
-        <p>The neuron computes a weighted sum of its inputs, adds a bias, and passes the result through a non-linear activation function:</p>
-        <pre><code>y = f( w₁x₁ + w₂x₂ + … + wₙxₙ + b )</code></pre>
-        <p>Common activations: sigmoid and tanh (historical), ReLU and GELU (modern deep networks). The non-linearity is essential — without it, stacking layers would collapse into a single linear function.</p>
-        <h3>3.2 Multilayer perceptrons</h3>
-        <p>Stack neurons into layers and you get an MLP. Each layer transforms its input into a new representation; deeper layers combine earlier features into increasingly abstract ones. A two-layer network with enough hidden units can approximate any continuous function (universal approximation), which is why neural networks are such a general tool.</p>
-        <h3>3.3 Learning = backpropagation + gradient descent</h3>
-        <p>Training adjusts the weights to reduce a loss function. Backpropagation applies the chain rule to compute the gradient of the loss with respect to every weight; gradient descent then steps each weight in the direction that reduces the loss. Nearly every neural network you will ever use — including LLMs — is trained by exactly this loop, just scaled up and distributed.</p>
-      </section>
+> Predict the next token. Everything else in an LLM — architecture, training data, scale — exists to do that one thing extraordinarily well.
 
-      <section id="sequences">
-        <h2>4. Modeling Sequences: RNNs, LSTMs, and GRUs</h2>
-        <p>Language is sequential — word order matters. Recurrent Neural Networks process a sequence one token at a time, passing a hidden state forward that acts as memory:</p>
-        <pre><code>hₜ = f( W·xₜ + U·hₜ₋₁ + b )</code></pre>
-        <p>Plain RNNs struggle with long-range dependencies because gradients vanish or explode over many time steps. LSTMs and GRUs fix this with <strong>gates</strong> — learned mechanisms that decide what to remember, what to forget, and what to output. For years, LSTM-based encoder–decoder models were the state of the art in machine translation.</p>
-        <p>The limitation that remained: recurrence is inherently sequential. You cannot compute the hidden state for token 10,000 until you have processed token 9,999 — which severely limits how much hardware parallelism training can exploit.</p>
-      </section>
+## 2. The Concept Ladder
 
-      <section id="attention">
-        <h2>5. Seq2Seq and the Attention Mechanism</h2>
-        <p>Sequence-to-sequence models use one RNN to encode an input sentence into a context and a second RNN to decode it into another language. The original bottleneck: the entire input had to be compressed into a single fixed-size vector.</p>
-        <p><strong>Attention</strong> removed that bottleneck. Instead of one fixed vector, the decoder learns, at each output step, a weighted combination over <em>all</em> encoder states — deciding dynamically which input words are most relevant. The weights are computed from query–key compatibility scores, normalized with softmax:</p>
-        <pre><code>attention(Q, K, V) = softmax( Q·Kᵀ / √d ) · V</code></pre>
-        <p>This single formula — queries, keys, values, scaled dot products — is the heart of every Transformer and every LLM.</p>
-      </section>
+The path from a single neuron to an LLM. Each step builds directly on the previous one.
 
-      <section id="transformer">
-        <h2>6. The Transformer</h2>
-        <p>The 2017 paper <em>"Attention Is All You Need"</em> removed recurrence entirely. The Transformer processes the whole sequence at once using <strong>self-attention</strong>: every token attends to every other token in the same sequence. Its key ingredients:</p>
-        <ul>
-          <li><strong>Token + positional embeddings</strong> — since there's no recurrence, position information is injected explicitly.</li>
-          <li><strong>Multi-head self-attention</strong> — several attention operations in parallel, each free to learn different relationships (syntax, coreference, semantics).</li>
-          <li><strong>Feed-forward layers</strong> — an MLP applied to each position independently; this is where much of the model's "knowledge" is stored.</li>
-          <li><strong>Residual connections + layer normalization</strong> — keep gradients healthy in very deep stacks.</li>
-        </ul>
-        <p>Because every token is processed in parallel, Transformers train orders of magnitude faster than RNNs on modern GPUs/TPUs — which is precisely what made scaling to billions of parameters practical.</p>
-      </section>
+<div class="ladder">
+<div class="rung"><span class="num">1</span><div><h4>The Artificial Neuron</h4><p>A weighted sum plus a non-linear activation: y = f(w·x + b). The atomic unit of every neural network.</p></div></div>
+<div class="rung"><span class="num">2</span><div><h4>Multilayer Perceptron (MLP)</h4><p>Stacked layers of neurons learn hierarchical features. Trained by backpropagation and gradient descent.</p></div></div>
+<div class="rung"><span class="num">3</span><div><h4>Recurrent Networks (RNN / LSTM / GRU)</h4><p>Networks with memory: a hidden state carried across time steps lets them process sequences like text.</p></div></div>
+<div class="rung"><span class="num">4</span><div><h4>Seq2Seq &amp; Attention</h4><p>Encoder–decoder models for translation; attention lets the decoder focus on the most relevant input positions.</p></div></div>
+<div class="rung"><span class="num">5</span><div><h4>The Transformer (2017)</h4><p>"Attention Is All You Need" — recurrence removed entirely; self-attention + feed-forward layers, fully parallelizable.</p></div></div>
+<div class="rung"><span class="num">6</span><div><h4>Large Language Models</h4><p>Transformers scaled up: billions of parameters, trillions of tokens, pretrained then aligned (instruction tuning, RLHF).</p></div></div>
+</div>
 
-      <section id="llms">
-        <h2>7. From Transformers to Large Language Models</h2>
-        <p>Two families emerged from the Transformer: encoder models like <strong>BERT</strong> (bidirectional, great for understanding tasks) and decoder-only models like <strong>GPT</strong> (autoregressive, great for generation). Modern LLMs are almost all decoder-only Transformers trained with next-token prediction on internet-scale text.</p>
-        <p>Three ingredients turned a good architecture into today's LLMs:</p>
-        <ul>
-          <li><strong>Scale</strong> — parameters, data, and compute grown together; capabilities improve predictably with scale (scaling laws).</li>
-          <li><strong>Pretraining → adaptation</strong> — a general "foundation model" is pretrained once, then adapted with instruction tuning and RLHF to follow instructions and be helpful and safe.</li>
-          <li><strong>Emergent behaviors</strong> — at sufficient scale, models show abilities like in-context learning and multi-step reasoning that smaller models do not.</li>
-        </ul>
-        <p>Everything else in this series — prompting, RAG, fine-tuning, agents, evaluation — builds on this foundation model picture.</p>
-      </section>
+## 3. Foundations: The Basic Neural Network
 
-      <section id="topics">
-        <h2>8. Topics Covered</h2>
-        <p>Tick the topic when you've learned it — this syncs with the main tracker.</p>
-        <ul class="topic-check">
-          <li><label><input type="checkbox" data-topic="a1"><span>LLMs — foundations from neurons to Transformers</span></label></li>
-        </ul>
-      </section>
+### 3.1 The artificial neuron
 
-      <section id="examples">
-        <h2>9. Example: A Neuron in a Few Lines</h2>
-        <p>A single neuron with a sigmoid activation, implemented with NumPy — the atom from which LLMs are built:</p>
-        <pre><code>import numpy as np
+The neuron computes a weighted sum of its inputs, adds a bias, and passes the result through a non-linear activation function:
+
+$$y = f\!\left( \sum_{i=1}^{n} w_i x_i + b \right)$$
+
+Common activations: sigmoid and tanh (historical), ReLU and GELU (modern deep networks). The non-linearity is essential — without it, stacking layers would collapse into a single linear function.
+
+### 3.2 Multilayer perceptrons
+
+Stack neurons into layers and you get an MLP. Each layer transforms its input into a new representation; deeper layers combine earlier features into increasingly abstract ones. A two-layer network with enough hidden units can approximate any continuous function (universal approximation), which is why neural networks are such a general tool.
+
+### 3.3 Learning = backpropagation + gradient descent
+
+Training adjusts the weights to reduce a loss function $L$. Backpropagation applies the chain rule to compute $\frac{\partial L}{\partial w}$ for every weight; gradient descent then steps each weight in the direction that reduces the loss:
+
+$$w \leftarrow w - \eta \, \frac{\partial L}{\partial w}$$
+
+Nearly every neural network you will ever use — including LLMs — is trained by exactly this loop, just scaled up and distributed.
+
+## 4. Modeling Sequences: RNNs, LSTMs, and GRUs
+
+Language is sequential — word order matters. Recurrent Neural Networks process a sequence one token at a time, passing a hidden state forward that acts as memory:
+
+$$h_t = f\!\left( W x_t + U h_{t-1} + b \right)$$
+
+Plain RNNs struggle with long-range dependencies because gradients vanish or explode over many time steps. LSTMs and GRUs fix this with **gates** — learned mechanisms that decide what to remember, what to forget, and what to output. For years, LSTM-based encoder–decoder models were the state of the art in machine translation.
+
+The limitation that remained: recurrence is inherently sequential. You cannot compute the hidden state for token 10,000 until you have processed token 9,999 — which severely limits how much hardware parallelism training can exploit.
+
+## 5. Seq2Seq and the Attention Mechanism
+
+Sequence-to-sequence models use one RNN to encode an input sentence into a context and a second RNN to decode it into another language. The original bottleneck: the entire input had to be compressed into a single fixed-size vector.
+
+**Attention** removed that bottleneck. Instead of one fixed vector, the decoder learns, at each output step, a weighted combination over *all* encoder states — deciding dynamically which input words are most relevant. The weights are computed from query–key compatibility scores, normalized with softmax:
+
+$$\mathrm{attention}(Q, K, V) = \mathrm{softmax}\!\left( \frac{Q K^{\top}}{\sqrt{d_k}} \right) V$$
+
+This single formula — queries, keys, values, scaled dot products — is the heart of every Transformer and every LLM.
+
+## 6. The Transformer
+
+The 2017 paper *"Attention Is All You Need"* removed recurrence entirely. The Transformer processes the whole sequence at once using **self-attention**: every token attends to every other token in the same sequence. Its key ingredients:
+
+- **Token + positional embeddings** — since there's no recurrence, position information is injected explicitly.
+- **Multi-head self-attention** — several attention operations in parallel, each free to learn different relationships (syntax, coreference, semantics).
+- **Feed-forward layers** — an MLP applied to each position independently; this is where much of the model's "knowledge" is stored.
+- **Residual connections + layer normalization** — keep gradients healthy in very deep stacks.
+
+Because every token is processed in parallel, Transformers train orders of magnitude faster than RNNs on modern GPUs/TPUs — which is precisely what made scaling to billions of parameters practical.
+
+## 7. From Transformers to Large Language Models
+
+Two families emerged from the Transformer: encoder models like **BERT** (bidirectional, great for understanding tasks) and decoder-only models like **GPT** (autoregressive, great for generation). Modern LLMs are almost all decoder-only Transformers trained with next-token prediction on internet-scale text.
+
+Three ingredients turned a good architecture into today's LLMs:
+
+- **Scale** — parameters, data, and compute grown together; capabilities improve predictably with scale (scaling laws).
+- **Pretraining → adaptation** — a general "foundation model" is pretrained once, then adapted with instruction tuning and RLHF to follow instructions and be helpful and safe.
+- **Emergent behaviors** — at sufficient scale, models show abilities like in-context learning and multi-step reasoning that smaller models do not.
+
+Everything else in this series — prompting, RAG, fine-tuning, agents, evaluation — builds on this foundation model picture.
+
+## 8. Topics Covered
+
+Tick the topic when you've learned it — this syncs with the main tracker.
+
+- [ ] LLMs — foundations from neurons to Transformers
+
+## 9. Example: A Neuron in a Few Lines
+
+A single neuron with a sigmoid activation, implemented with NumPy — the atom from which LLMs are built:
+
+```python
+import numpy as np
 
 def sigmoid(z):
     return 1 / (1 + np.exp(-z))
@@ -128,27 +157,23 @@ w = np.array([0.8,  0.4, -0.6])  # learned weights
 b = 0.1                          # bias
 
 y = sigmoid(np.dot(w, x) + b)
-print(y)  # ≈ 0.34</code></pre>
-        <p>Scale this to billions of neurons, replace sigmoid with GELU, wrap it in self-attention and feed-forward blocks, train on trillions of tokens — and you have an LLM.</p>
-      </section>
+print(y)  # ≈ 0.34
+```
 
-      <section id="resources">
-        <h2>10. Resources</h2>
-        <ul>
-          <li>Vaswani et al., <em>Attention Is All You Need</em> (2017) — the original Transformer paper.</li>
-          <li>3Blue1Brown — <em>Neural Networks</em> and <em>Transformers</em> video series (excellent visual intuition).</li>
-          <li>Andrej Karpathy — <em>Neural Networks: Zero to Hero</em> (build micrograd and nanoGPT from scratch).</li>
-          <li>Radford et al., <em>Improving Language Understanding by Generative Pre-Training</em> (GPT, 2018).</li>
-          <li>Devlin et al., <em>BERT: Pre-training of Deep Bidirectional Transformers</em> (2018).</li>
-        </ul>
-      </section>
+Scale this to billions of neurons, replace sigmoid with GELU, wrap it in self-attention and feed-forward blocks, train on trillions of tokens — and you have an LLM.
 
-      <section id="notes">
-        <h2>11. My Notes</h2>
-        <p>[Personal takeaways, gotchas, questions to revisit, and connections to other chapters.]</p>
-      </section>
+## 10. Resources
 
-    </div>
+- Vaswani et al., *Attention Is All You Need* (2017) — the original Transformer paper.
+- 3Blue1Brown — *Neural Networks* and *Transformers* video series (excellent visual intuition).
+- Andrej Karpathy — *Neural Networks: Zero to Hero* (build micrograd and nanoGPT from scratch).
+- Radford et al., *Improving Language Understanding by Generative Pre-Training* (GPT, 2018).
+- Devlin et al., *BERT: Pre-training of Deep Bidirectional Transformers* (2018).
+
+## 11. My Notes
+
+[Personal takeaways, gotchas, questions to revisit, and connections to other chapters.]
+    </script>
 
     <nav class="chapter-nav" aria-label="Chapter navigation">
       <a href="../../learning-tracker.htm">← Back to the Learning Tracker</a>
@@ -162,6 +187,8 @@ print(y)  # ≈ 0.34</code></pre>
     </div>
   </footer>
 
+  <script src="https://cdn.jsdelivr.net/npm/marked@12/marked.min.js"></script>
+  <script src="../../assets/learning-md.js"></script>
   <script src="../../assets/learning.js"></script>
 </body>
 </html>

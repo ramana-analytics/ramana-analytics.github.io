@@ -38,7 +38,8 @@
   boxes.forEach(box => { box.checked = !!progress[box.dataset.topic]; });
 
   function updateChapterProgress() {
-    const topics = document.querySelectorAll('.topic-check input[data-topic]');
+    // Count checkboxes from both HTML (.topic-check) and Markdown-rendered content
+    const topics = document.querySelectorAll('.topic-check input[data-topic], #chapter-content input[data-topic]');
     const done = [...topics].filter(b => b.checked).length;
     const fill = document.getElementById('chapterFill');
     const lbl = document.getElementById('chapterLabel');
