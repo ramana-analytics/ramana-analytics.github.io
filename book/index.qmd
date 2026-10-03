@@ -1,0 +1,35 @@
+---
+title: "Preface"
+---
+
+# AI/ML Learning Notes {.unnumbered}
+
+These are my working notes on modern AI, machine learning, generative AI, NLP,
+computer vision, IoT, graph ML, MLOps, and ML system design — written as I learn,
+from foundations upward.
+
+The goal of this book is depth through rebuilding: every concept is traced back
+to the foundations it stands on, then rebuilt forward with math, code, and
+practical trade-offs.
+
+## How to read this book
+
+- **Chapters** follow the skill categories on my
+  [AI/ML Learning Tracker](https://ramanaai.com/learning-tracker.htm).
+- **Math** is typeset with LaTeX: inline like $h_t = f(Wx_t + Uh_{t-1} + b)$,
+  or displayed:
+
+$$\attention(Q, K, V) = \softmax\!\left(\frac{QK^\top}{\sqrt{d_k}}\right)V$$
+
+- **Code** is runnable and reproducible where possible.
+- **Progress checkboxes** on the website tracker sync with what is covered here.
+
+::: {.callout-note}
+This is a living document. Chapters are added as learning progresses.
+:::
+
+## Conventions
+
+- Vectors are bold lowercase ($\mathbf{x}$), matrices bold uppercase ($W$).
+- $\R$ denotes the real numbers, $\E[\cdot]$ expectation.
+- Code examples use Python unless stated otherwise.

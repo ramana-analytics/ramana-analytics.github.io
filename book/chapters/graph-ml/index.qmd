@@ -1,0 +1,11 @@
+# Graph Machine Learning {.unnumbered}
+
+*This part is planned. Chapters will cover: GNNs, heterogeneous graphs, graph
+embeddings, and graph anomaly detection.*
+
+## Planned chapters {.unnumbered}
+
+- Graph Neural Networks
+- Heterogeneous graphs
+- Graph embeddings
+- Graph anomaly detection

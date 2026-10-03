@@ -1,0 +1,15 @@
+/* Book-specific HTML customizations for the Quarto build.
+   Matches the warm, academic look of ramanaai.com. */
+
+:root {
+  --book-accent: #255a7e;
+}
+
+.sidebar-title { font-weight: 700; }
+
+#quarto-content .page-title { font-family: 'STIX Two Text', Georgia, serif; }
+
+.callout-important { border-left-color: var(--book-accent); }
+
+/* Keep code blocks comfortably sized in the HTML book */
+pre.sourceCode { font-size: 0.9em; }

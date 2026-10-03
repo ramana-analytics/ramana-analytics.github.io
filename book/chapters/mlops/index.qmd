@@ -1,0 +1,12 @@
+# MLOps & Production AI {.unnumbered}
+
+*This part is planned. Chapters will cover: feature stores, model monitoring,
+drift detection, CI/CD for ML, and vector databases.*
+
+## Planned chapters {.unnumbered}
+
+- Feature stores
+- Model monitoring
+- Drift detection
+- CI/CD for ML
+- Vector databases

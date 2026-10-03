@@ -77,7 +77,7 @@ The path from a single neuron to an LLM. Each step builds directly on the previo
 
 The neuron computes a weighted sum of its inputs, adds a bias, and passes the result through a non-linear activation function:
 
-$$y = f\!\left( \sum_{i=1}^{n} w_i x_i + b \right)$$
+$$y = f\left( \sum_{i=1}^{n} w_i x_i + b \right)$$
 
 Common activations: sigmoid and tanh (historical), ReLU and GELU (modern deep networks). The non-linearity is essential — without it, stacking layers would collapse into a single linear function.
 
@@ -157,7 +157,7 @@ w = np.array([0.8,  0.4, -0.6])  # learned weights
 b = 0.1                          # bias
 
 y = sigmoid(np.dot(w, x) + b)
-print(y)  # ≈ 0.34
+print(y)  # ≈ 0.144
 ```
 
 Scale this to billions of neurons, replace sigmoid with GELU, wrap it in self-attention and feed-forward blocks, train on trillions of tokens — and you have an LLM.

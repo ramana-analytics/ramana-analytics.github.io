@@ -1,0 +1,13 @@
+# Computer Vision {.unnumbered}
+
+*This part is planned. Chapters will cover: CNNs, Vision Transformers, object
+detection, segmentation, OCR, and vision-language models.*
+
+## Planned chapters {.unnumbered}
+
+- CNNs
+- Vision Transformers
+- Object Detection
+- Segmentation
+- OCR
+- Vision-Language models

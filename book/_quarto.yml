@@ -1,0 +1,80 @@
+project:
+  type: book
+  output-dir: _book
+
+book:
+  title: "AI/ML Learning Notes"
+  subtitle: "From Foundations to Frontier AI"
+  author: "Venkataramana Miryala, PhD"
+  date: today
+  page-navigation: true
+  search: true
+  repo-url: https://github.com/ramana-analytics/ramana-analytics.github.io
+  downloads: [pdf, epub]
+  sharing: [twitter, linkedin]
+  chapters:
+    - index.qmd
+    - part: "GenAI & Foundation Models"
+      chapters:
+        - chapters/genai/llm-foundations.qmd
+    - part: "NLP"
+      chapters:
+        - chapters/nlp/index.qmd
+    - part: "Recommender Systems"
+      chapters:
+        - chapters/recommenders/index.qmd
+    - part: "Computer Vision"
+      chapters:
+        - chapters/cv/index.qmd
+    - part: "Graph Machine Learning"
+      chapters:
+        - chapters/graph-ml/index.qmd
+    - part: "Time-Series & Sequential Modeling"
+      chapters:
+        - chapters/time-series/index.qmd
+    - part: "MLOps & Production AI"
+      chapters:
+        - chapters/mlops/index.qmd
+    - part: "ML System Design"
+      chapters:
+        - chapters/system-design/index.qmd
+    - references.qmd
+
+bibliography: references.bib
+
+format:
+  html:
+    theme:
+      light: cosmo
+      dark: slate
+    css: assets/book.css
+    toc: true
+    toc-depth: 3
+    number-sections: true
+    number-depth: 2
+    code-fold: true
+    code-tools: true
+    highlight-style: github
+  pdf:
+    documentclass: scrreprt
+    papersize: letter
+    fontsize: 11pt
+    number-sections: true
+    colorlinks: true
+    linkcolor: "NavyBlue"
+    urlcolor: "NavyBlue"
+    citecolor: "NavyBlue"
+    geometry:
+      - margin=1in
+    header-includes:
+      - \usepackage{amsmath}
+      - \usepackage{amssymb}
+      - \usepackage{amsthm}
+      - \newcommand{\R}{\mathbb{R}}
+      - \newcommand{\E}{\mathbb{E}}
+      - \newcommand{\softmax}{\mathrm{softmax}}
+      - \newcommand{\attention}{\mathrm{attention}}
+  epub:
+    toc-title: "Contents"
+
+editor: source

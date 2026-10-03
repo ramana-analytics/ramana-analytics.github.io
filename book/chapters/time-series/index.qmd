@@ -1,0 +1,12 @@
+# Time-Series & Sequential Modeling {.unnumbered}
+
+*This part is planned. Chapters will cover: Transformers for time-series,
+LSTM/GRU, temporal CNNs, forecasting, and anomaly detection.*
+
+## Planned chapters {.unnumbered}
+
+- Transformers for time-series
+- LSTM / GRU
+- Temporal CNNs
+- Forecasting
+- Anomaly detection

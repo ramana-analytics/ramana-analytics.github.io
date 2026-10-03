@@ -1,0 +1,14 @@
+# Recommender Systems {.unnumbered}
+
+*This part is planned. Chapters will cover: multi-product recommenders,
+cold-start modeling, graph-based recommenders, sequential recommenders,
+multi-task learning, and unified embeddings.*
+
+## Planned chapters {.unnumbered}
+
+- Multi-product recommenders
+- Cold-start modeling
+- Graph-based recommenders
+- Sequential recommenders
+- Multi-task learning
+- Unified embeddings

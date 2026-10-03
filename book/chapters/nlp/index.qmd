@@ -1,0 +1,13 @@
+# NLP {.unnumbered}
+
+*This part is planned. Chapters will cover: Transformers, text classification,
+NER, summarization, QA, and embeddings.*
+
+## Planned chapters {.unnumbered}
+
+- Transformers
+- Text Classification
+- Named Entity Recognition
+- Summarization
+- Question Answering
+- Embeddings
