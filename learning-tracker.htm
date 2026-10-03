@@ -190,6 +190,43 @@
     .res-card p { font-size: 0.82rem; color: var(--text-muted); }
 
     /* ==============================
+       7b. Progress Tracking
+       ============================== */
+    .topic { display: flex; align-items: center; gap: 0.6rem; cursor: pointer; }
+    .topic input { accent-color: var(--accent); width: 15px; height: 15px; cursor: pointer; flex-shrink: 0; }
+    .topic input:checked + span { color: var(--text-muted); text-decoration: line-through; text-decoration-color: var(--accent); opacity: 0.7; }
+    .acc-meter { display: flex; align-items: center; gap: 0.55rem; margin-left: auto; margin-right: 0.6rem; }
+    .acc-meter-label { font-family: var(--font-sans); font-size: 0.72rem; color: var(--text-muted); min-width: 2.4rem; text-align: right; font-variant-numeric: tabular-nums; }
+    .acc-meter-bar { width: 64px; height: 5px; background: var(--bg-subtle); border-radius: 3px; overflow: hidden; }
+    .acc-meter-fill { display: block; height: 100%; width: 0; background: var(--accent); border-radius: 3px; transition: width 0.3s ease; }
+
+    .progress-dashboard {
+      display: flex; flex-direction: column; gap: 0.7rem;
+      background: var(--bg-elev); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 1.3rem 1.5rem; margin-bottom: 1.6rem; box-shadow: var(--shadow);
+    }
+    .pd-label { font-family: var(--font-sans); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); }
+    .pd-count { font-size: 1.3rem; font-weight: 600; }
+    .pd-bar { height: 8px; background: var(--bg-subtle); border-radius: 4px; overflow: hidden; }
+    .pd-fill { display: block; height: 100%; width: 0; background: linear-gradient(90deg, var(--accent), #7fb6d9); transition: width 0.4s ease; }
+    .pd-note { font-size: 0.78rem; color: var(--text-muted); }
+
+    /* ==============================
+       8b. Chapters (Book TOC)
+       ============================== */
+    .chapters-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1rem; }
+    .chapter-card {
+      display: flex; align-items: center; gap: 0.85rem;
+      background: var(--bg-elev); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 1rem 1.1rem; color: var(--text); box-shadow: var(--shadow);
+      transition: transform var(--transition), border-color var(--transition);
+    }
+    .chapter-card:hover { transform: translateY(-2px); border-color: var(--accent); text-decoration: none; }
+    .chapter-num { font-family: var(--font-sans); font-weight: 800; font-size: 1rem; color: var(--accent); min-width: 1.7rem; }
+    .chapter-card h3 { font-size: 0.92rem; margin: 0; font-family: var(--font-sans); font-weight: 600; }
+    .ch-status { display: block; font-family: var(--font-sans); font-size: 0.68rem; color: var(--text-muted); margin-top: 0.15rem; }
+
+    /* ==============================
        11. Footer
        ============================== */
     .site-footer {
@@ -219,6 +256,7 @@
       <nav class="nav-links" aria-label="Main navigation">
         <a href="index.htm">Home</a>
         <a href="#skills">Skills</a>
+        <a href="#chapters">Chapters</a>
         <a href="#projects">Projects</a>
         <a href="#roadmap">Roadmap</a>
         <a href="#resources">Resources</a>
@@ -260,7 +298,17 @@
     <div class="container">
       <p class="section-label">Master Skill Index</p>
       <h2 class="section-title">Skill Categories</h2>
-      <p class="section-desc">Expand a category to see the specific topics being tracked.</p>
+      <p class="section-desc">Expand a category and tick topics as you learn them — progress is saved automatically.</p>
+
+      <!-- Overall progress dashboard (updated by JS) -->
+      <div class="progress-dashboard">
+        <div>
+          <p class="pd-label">Overall Learning Progress</p>
+          <p class="pd-count" id="overallCount">0 / 72 topics learned</p>
+        </div>
+        <div class="pd-bar"><span class="pd-fill" id="overallFill"></span></div>
+        <p class="pd-note">Progress is stored in this browser (localStorage), so it persists between visits on this device.</p>
+      </div>
 
       <div class="accordion">
 
@@ -539,6 +587,37 @@
   </section>
 
   <!-- ==============================
+       BOOK CHAPTERS (Table of Contents)
+       Each chapter gets its own page over time — copy learning-chapter-template.htm
+       ============================== -->
+  <section id="chapters">
+    <div class="container">
+      <p class="section-label">The Book</p>
+      <h2 class="section-title">Learning Chapters</h2>
+      <p class="section-desc">Each category will become a full chapter page with concepts, examples, and notes. Links activate as chapters are written.</p>
+
+      <div class="chapters-grid">
+        <a class="chapter-card" href="#"><span class="chapter-num">01</span><span><h3>GenAI &amp; Foundation Models</h3><span class="ch-status">Chapter planned</span></span></a>
+        <a class="chapter-card" href="#"><span class="chapter-num">02</span><span><h3>NLP</h3><span class="ch-status">Chapter planned</span></span></a>
+        <a class="chapter-card" href="#"><span class="chapter-num">03</span><span><h3>Recommender Systems</h3><span class="ch-status">Chapter planned</span></span></a>
+        <a class="chapter-card" href="#"><span class="chapter-num">04</span><span><h3>Computer Vision</h3><span class="ch-status">Chapter planned</span></span></a>
+        <a class="chapter-card" href="#"><span class="chapter-num">05</span><span><h3>3D Vision &amp; Spatial AI</h3><span class="ch-status">Chapter planned</span></span></a>
+        <a class="chapter-card" href="#"><span class="chapter-num">06</span><span><h3>Graph Machine Learning</h3><span class="ch-status">Chapter planned</span></span></a>
+        <a class="chapter-card" href="#"><span class="chapter-num">07</span><span><h3>Time-Series &amp; Sequential Modeling</h3><span class="ch-status">Chapter planned</span></span></a>
+        <a class="chapter-card" href="#"><span class="chapter-num">08</span><span><h3>IoT &amp; Predictive Maintenance</h3><span class="ch-status">Chapter planned</span></span></a>
+        <a class="chapter-card" href="#"><span class="chapter-num">09</span><span><h3>Fraud, Risk &amp; Security</h3><span class="ch-status">Chapter planned</span></span></a>
+        <a class="chapter-card" href="#"><span class="chapter-num">10</span><span><h3>Optimization &amp; Reinforcement Learning</h3><span class="ch-status">Chapter planned</span></span></a>
+        <a class="chapter-card" href="#"><span class="chapter-num">11</span><span><h3>Classical ML</h3><span class="ch-status">Chapter planned</span></span></a>
+        <a class="chapter-card" href="#"><span class="chapter-num">12</span><span><h3>Tabular ML</h3><span class="ch-status">Chapter planned</span></span></a>
+        <a class="chapter-card" href="#"><span class="chapter-num">13</span><span><h3>Multi-modal AI</h3><span class="ch-status">Chapter planned</span></span></a>
+        <a class="chapter-card" href="#"><span class="chapter-num">14</span><span><h3>MLOps &amp; Production AI</h3><span class="ch-status">Chapter planned</span></span></a>
+        <a class="chapter-card" href="#"><span class="chapter-num">15</span><span><h3>Data Engineering for AI</h3><span class="ch-status">Chapter planned</span></span></a>
+        <a class="chapter-card" href="#"><span class="chapter-num">16</span><span><h3>ML System Design</h3><span class="ch-status">Chapter planned</span></span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==============================
        PROJECTS
        ============================== -->
   <section id="projects">
@@ -698,6 +777,69 @@
         const current = document.documentElement.getAttribute('data-theme');
         setTheme(current === 'dark' ? 'light' : 'dark');
       });
+
+      /* ---- Topic Tracking & Progress (persisted in localStorage) ---- */
+      const PROGRESS_KEY = 'learning-progress-v1';
+      const progress = JSON.parse(localStorage.getItem(PROGRESS_KEY) || '{}');
+      const items = document.querySelectorAll('.acc-item');
+
+      items.forEach((item, ci) => {
+        const letter = String.fromCharCode(65 + ci); // A..P matching the category letters
+        const summary = item.querySelector('summary');
+        const chev = summary.querySelector('.chev');
+
+        // Inject a per-category progress meter into the accordion header
+        const meter = document.createElement('span');
+        meter.className = 'acc-meter';
+        meter.innerHTML = '<span class="acc-meter-label">0/0</span><span class="acc-meter-bar"><span class="acc-meter-fill"></span></span>';
+        summary.insertBefore(meter, chev);
+
+        // Turn each topic line into a trackable checkbox
+        item.querySelectorAll('.acc-body li').forEach((li, ti) => {
+          const id = letter.toLowerCase() + (ti + 1); // e.g. a1, a2, b1 ...
+          const text = li.textContent.trim();
+          li.textContent = '';
+          const label = document.createElement('label');
+          label.className = 'topic';
+          const box = document.createElement('input');
+          box.type = 'checkbox';
+          box.dataset.topic = id;
+          box.checked = !!progress[id];
+          const span = document.createElement('span');
+          span.textContent = text;
+          label.appendChild(box);
+          label.appendChild(span);
+          li.appendChild(label);
+        });
+      });
+
+      function updateProgress() {
+        let totalDone = 0, totalAll = 0;
+        items.forEach(item => {
+          const boxes = item.querySelectorAll('input[data-topic]');
+          const done = [...boxes].filter(b => b.checked).length;
+          totalDone += done;
+          totalAll += boxes.length;
+          const fill = item.querySelector('.acc-meter-fill');
+          const lbl = item.querySelector('.acc-meter-label');
+          if (fill) fill.style.width = boxes.length ? (done / boxes.length * 100) + '%' : '0%';
+          if (lbl) lbl.textContent = done + '/' + boxes.length;
+        });
+        const oc = document.getElementById('overallCount');
+        const of = document.getElementById('overallFill');
+        if (oc) oc.textContent = totalDone + ' / ' + totalAll + ' topics learned';
+        if (of) of.style.width = totalAll ? (totalDone / totalAll * 100) + '%' : '0%';
+      }
+
+      document.addEventListener('change', e => {
+        const box = e.target.closest('input[data-topic]');
+        if (!box) return;
+        progress[box.dataset.topic] = box.checked;
+        localStorage.setItem(PROGRESS_KEY, JSON.stringify(progress));
+        updateProgress();
+      });
+
+      updateProgress();
 
       /* ---- Smooth Accordion (optional enhancement) ---- */
       document.querySelectorAll('.acc-item summary').forEach(summary => {
