@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI/ML Learning Tracker — Venkataramana</title>
+  <meta name="description" content="A personal learning tracker covering GenAI, NLP, Computer Vision, IoT, Graph ML, MLOps, and ML System Design.">
+
+  <!-- ==== Google Fonts ==== -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=STIX+Two+Text:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+
+  <!-- ==== Embedded Styles ==== -->
+  <style>
+    /* ==============================
+       1. CSS Variables / Themes
+       ============================== */
+    :root {
+      --bg:            #f6f5f1;
+      --bg-elev:       #ffffff;
+      --bg-subtle:     #efede8;
+      --text:          #1d252c;
+      --text-muted:    #5c6770;
+      --accent:        #255a7e;
+      --accent-soft:   rgba(37,90,126,0.08);
+      --border:        rgba(29,37,44,0.12);
+      --shadow:        0 4px 18px rgba(29,37,44,0.08);
+      --radius:        10px;
+      --font:          'STIX Two Text', Georgia, serif;
+      --font-sans:     Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      --transition:    0.25s ease;
+    }
+    [data-theme="dark"] {
+      --bg:            #0f141b;
+      --bg-elev:       #151b23;
+      --bg-subtle:     #1c232d;
+      --text:          #e8edf2;
+      --text-muted:    #9aa6b1;
+      --accent:        #5fb3d9;
+      --accent-soft:   rgba(95,179,217,0.12);
+      --border:        rgba(232,237,242,0.09);
+      --shadow:        0 4px 18px rgba(0,0,0,0.35);
+    }
+
+    /* ==============================
+       2. Base / Reset
+       ============================== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      transition: background var(--transition), color var(--transition);
+    }
+    img { max-width: 100%; display: block; }
+    a { color: var(--accent); text-decoration: none; transition: color var(--transition); }
+    a:hover { text-decoration: underline; }
+    h1, h2, h3, h4, h5 { font-family: var(--font); line-height: 1.25; letter-spacing: -0.02em; }
+    .container { max-width: 1140px; margin: 0 auto; padding: 0 1.5rem; }
+
+    /* ==============================
+       3. Header / Nav
+       ============================== */
+    .site-header {
+      position: sticky; top: 0; z-index: 100;
+      background: color-mix(in srgb, var(--bg) 88%, transparent);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+    .header-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 1rem; padding: 0.9rem 1.5rem; max-width: 1140px; margin: 0 auto;
+    }
+    .brand { font-size: 1.05rem; font-weight: 700; color: var(--text); }
+    .brand span { color: var(--accent); }
+    .nav-links { display: flex; gap: 1.1rem; align-items: center; }
+    .nav-links a { font-family: var(--font-sans); font-size: 0.86rem; color: var(--text-muted); font-weight: 500; }
+    .nav-links a:hover, .nav-links a.active { color: var(--text); }
+    .theme-toggle {
+      background: var(--bg-elev); border: 1px solid var(--border); color: var(--text);
+      border-radius: 8px; padding: 0.4rem 0.7rem; font-size: 0.8rem; cursor: pointer;
+      display: flex; align-items: center; gap: 0.4rem;
+      font-family: var(--font-sans); transition: all var(--transition);
+    }
+    .theme-toggle:hover { border-color: var(--accent); }
+
+    /* ==============================
+       4. Hero
+       ============================== */
+    .hero {
+      padding: 5rem 0 4rem; text-align: center;
+      background: radial-gradient(ellipse 60% 40% at 50% 0%, var(--accent-soft), transparent 70%);
+    }
+    .hero h1 { font-size: clamp(2.2rem, 5vw, 3.6rem); margin-bottom: 0.6rem; }
+    .hero p.subtitle { font-size: 1.08rem; color: var(--text-muted); max-width: 640px; margin: 0 auto 1.4rem; }
+
+    /* ==============================
+       5. Sections
+       ============================== */
+    section { padding: 3.5rem 0; }
+    .section-label {
+      display: inline-block; font-family: var(--font-sans); font-size: 0.7rem; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.6rem;
+    }
+    .section-title { font-size: clamp(1.6rem, 3vw, 2.2rem); margin-bottom: 1rem; }
+    .section-desc { color: var(--text-muted); max-width: 680px; margin-bottom: 2rem; }
+
+    /* ==============================
+       6. About
+       ============================== */
+    .about-grid { display: grid; grid-template-columns: 160px 1fr; gap: 2rem; align-items: center; }
+    .profile-img {
+      width: 160px; height: 160px; border-radius: 50%; object-fit: cover;
+      border: 4px solid var(--accent-soft); box-shadow: var(--shadow);
+      background: var(--bg-subtle); display: flex; align-items: center; justify-content: center;
+      font-size: 2rem; color: var(--text-muted);
+    }
+    .about-text h2 { margin-bottom: 0.6rem; }
+    .about-text p { color: var(--text-muted); max-width: 700px; }
+
+    /* ==============================
+       7. Skill Index (Accordion)
+       ============================== */
+    .accordion { display: grid; gap: 0.8rem; }
+    .acc-item {
+      background: var(--bg-elev); border: 1px solid var(--border); border-radius: var(--radius);
+      overflow: hidden; box-shadow: var(--shadow);
+    }
+    .acc-item summary {
+      cursor: pointer; list-style: none; display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 1.2rem; font-family: var(--font-sans); font-weight: 600; font-size: 0.95rem;
+    }
+    .acc-item summary::-webkit-details-marker { display: none; }
+    .acc-item summary .left { display: flex; align-items: center; gap: 0.75rem; }
+    .acc-item summary .icon { font-size: 1.1rem; }
+    .acc-item summary .count { font-size: 0.75rem; color: var(--text-muted); font-weight: 500; }
+    .acc-item summary .chev { transition: transform var(--transition); }
+    .acc-item[open] summary .chev { transform: rotate(90deg); }
+    .acc-body { padding: 0 1.2rem 1.2rem; border-top: 1px solid var(--border); }
+    .acc-body ul { margin: 0.8rem 0 0 1.2rem; color: var(--text-muted); font-size: 0.9rem; }
+    .acc-body li { margin-bottom: 0.35rem; }
+
+    /* ==============================
+       8. Projects
+       ============================== */
+    .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.2rem; }
+    .proj-card {
+      background: var(--bg-elev); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 1.3rem; box-shadow: var(--shadow); transition: transform var(--transition);
+    }
+    .proj-card:hover { transform: translateY(-3px); }
+    .proj-card h3 { font-size: 1.05rem; margin-bottom: 0.4rem; }
+    .proj-card p { font-size: 0.88rem; color: var(--text-muted); margin-bottom: 0.8rem; }
+    .proj-card .status {
+      display: inline-block; font-family: var(--font-sans); font-size: 0.7rem; font-weight: 700;
+      padding: 0.2em 0.7em; border-radius: 12px; margin-bottom: 0.8rem;
+    }
+    .status.not-started { background: var(--bg-subtle); color: var(--text-muted); }
+    .status.in-progress { background: rgba(255,193,7,0.18); color: #a67c00; }
+    .status.completed { background: rgba(40,167,69,0.15); color: #1e7e34; }
+    .proj-card a { font-family: var(--font-sans); font-size: 0.82rem; font-weight: 600; }
+
+    /* ==============================
+       9. Roadmap
+       ============================== */
+    .roadmap { position: relative; padding-left: 2rem; }
+    .roadmap::before { content: ''; position: absolute; left: 7px; top: 0; bottom: 0; width: 2px; background: var(--border); }
+    .roadmap-item { position: relative; margin-bottom: 1.4rem; }
+    .roadmap-item::before {
+      content: ''; position: absolute; left: -1.45rem; top: 0.45rem; width: 10px; height: 10px;
+      border-radius: 50%; background: var(--accent); border: 3px solid var(--bg);
+    }
+    .roadmap-item h4 { font-family: var(--font-sans); font-size: 0.92rem; margin-bottom: 0.15rem; }
+    .roadmap-item p { color: var(--text-muted); font-size: 0.86rem; }
+
+    /* ==============================
+       10. Resources
+       ============================== */
+    .resources-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem; }
+    .res-card {
+      background: var(--bg-elev); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 1.2rem; text-align: center; box-shadow: var(--shadow);
+    }
+    .res-card .icon { font-size: 1.5rem; margin-bottom: 0.5rem; }
+    .res-card h3 { font-size: 0.98rem; margin-bottom: 0.3rem; }
+    .res-card p { font-size: 0.82rem; color: var(--text-muted); }
+
+    /* ==============================
+       11. Footer
+       ============================== */
+    .site-footer {
+      border-top: 1px solid var(--border); padding: 2.5rem 0; margin-top: 3rem;
+      text-align: center; color: var(--text-muted); font-size: 0.85rem;
+    }
+    .footer-links { display: flex; justify-content: center; gap: 1.4rem; margin-top: 0.8rem; }
+
+    /* ==============================
+       12. Responsive
+       ============================== */
+    @media (max-width: 768px) {
+      .about-grid { grid-template-columns: 1fr; text-align: center; }
+      .profile-img { margin: 0 auto; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==============================
+       HEADER + NAVIGATION
+       ============================== -->
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="index.htm" class="brand">AI/ML <span>Learning Tracker</span></a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="index.htm">Home</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#roadmap">Roadmap</a>
+        <a href="#resources">Resources</a>
+      </nav>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark/light theme">
+        <span id="themeIcon">🌙</span> <span id="themeLabel">Dark</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ==============================
+       HERO
+       ============================== -->
+  <section class="hero">
+    <div class="container">
+      <h1>AI/ML Learning Tracker</h1>
+      <p class="subtitle">My Journey to Master Modern AI, ML, GenAI, NLP, CV, IoT, and Advanced Modeling</p>
+    </div>
+  </section>
+
+  <!-- ==============================
+       ABOUT ME
+       ============================== -->
+  <section id="about">
+    <div class="container about-grid">
+      <div class="profile-img" aria-label="Profile image placeholder">👤</div>
+      <div class="about-text">
+        <p class="section-label">About Me</p>
+        <h2 class="section-title">Venkataramana</h2>
+        <p>I am Venkataramana, a Senior Manager in Enterprise AI Platforms &amp; AI Research. This webpage tracks my continuous learning across AI, ML, GenAI, NLP, Computer Vision, IoT, Graph ML, and more.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==============================
+       MASTER SKILL INDEX (Accordion)
+       ============================== -->
+  <section id="skills">
+    <div class="container">
+      <p class="section-label">Master Skill Index</p>
+      <h2 class="section-title">Skill Categories</h2>
+      <p class="section-desc">Expand a category to see the specific topics being tracked.</p>
+
+      <div class="accordion">
+
+        <!-- A. GenAI & Foundation Models -->
+        <details class="acc-item" open>
+          <summary>
+            <span class="left"><span class="icon">🧠</span> A. GenAI &amp; Foundation Models <span class="count">7 topics</span></span>
+            <span class="chev">›</span>
+          </summary>
+          <div class="acc-body">
+            <ul>
+              <li>LLMs</li>
+              <li>Prompt Engineering</li>
+              <li>Fine-tuning (LoRA, QLoRA)</li>
+              <li>RAG</li>
+              <li>Agents</li>
+              <li>Safety &amp; Guardrails</li>
+              <li>Evaluation</li>
+            </ul>
+          </div>
+        </details>
+
+        <!-- B. NLP -->
+        <details class="acc-item">
+          <summary>
+            <span class="left"><span class="icon">🗣️</span> B. NLP <span class="count">6 topics</span></span>
+            <span class="chev">›</span>
+          </summary>
+          <div class="acc-body">
+            <ul>
+              <li>Transformers</li>
+              <li>Text Classification</li>
+              <li>NER</li>
+              <li>Summarization</li>
+              <li>QA</li>
+              <li>Embeddings</li>
+            </ul>
+          </div>
+        </details>
+
+        <!-- C. Recommender Systems -->
+        <details class="acc-item">
+          <summary>
+            <span class="left"><span class="icon">🎯</span> C. Recommender Systems <span class="count">6 topics</span></span>
+            <span class="chev">›</span>
+          </summary>
+          <div class="acc-body">
+            <ul>
+              <li>Multi-product recommenders</li>
+              <li>Cold-start modeling</li>
+              <li>Graph-based recommenders</li>
+              <li>Sequential recommenders</li>
+              <li>Multi-task learning</li>
+              <li>Unified embeddings</li>
+            </ul>
+          </div>
+        </details>
+
+        <!-- D. Computer Vision -->
+        <details class="acc-item">
+          <summary>
+            <span class="left"><span class="icon">👁️</span> D. Computer Vision <span class="count">6 topics</span></span>
+            <span class="chev">›</span>
+          </summary>
+          <div class="acc-body">
+            <ul>
+              <li>CNNs</li>
+              <li>Vision Transformers</li>
+              <li>Object Detection</li>
+              <li>Segmentation</li>
+              <li>OCR</li>
+              <li>Vision-Language models</li>
+            </ul>
+          </div>
+        </details>
+
+        <!-- E. 3D Vision & Spatial AI -->
+        <details class="acc-item">
+          <summary>
+            <span class="left"><span class="icon">🧊</span> E. 3D Vision &amp; Spatial AI <span class="count">5 topics</span></span>
+            <span class="chev">›</span>
+          </summary>
+          <div class="acc-body">
+            <ul>
+              <li>3D CNNs</li>
+              <li>Point Clouds</li>
+              <li>NeRF</li>
+              <li>SLAM</li>
+              <li>Depth estimation</li>
+            </ul>
+          </div>
+        </details>
+
+        <!-- F. Graph Machine Learning -->
+        <details class="acc-item">
+          <summary>
+            <span class="left"><span class="icon">🕸️</span> F. Graph Machine Learning <span class="count">4 topics</span></span>
+            <span class="chev">›</span>
+          </summary>
+          <div class="acc-body">
+            <ul>
+              <li>GNNs</li>
+              <li>Heterogeneous graphs</li>
+              <li>Graph embeddings</li>
+              <li>Graph anomaly detection</li>
+            </ul>
+          </div>
+        </details>
+
+        <!-- G. Time-Series & Sequential Modeling -->
+        <details class="acc-item">
+          <summary>
+            <span class="left"><span class="icon">📈</span> G. Time-Series &amp; Sequential Modeling <span class="count">5 topics</span></span>
+            <span class="chev">›</span>
+          </summary>
+          <div class="acc-body">
+            <ul>
+              <li>Transformers for time-series</li>
+              <li>LSTM/GRU</li>
+              <li>Temporal CNNs</li>
+              <li>Forecasting</li>
+              <li>Anomaly detection</li>
+            </ul>
+          </div>
+        </details>
+
+        <!-- H. IoT & Predictive Maintenance -->
+        <details class="acc-item">
+          <summary>
+            <span class="left"><span class="icon">🔧</span> H. IoT &amp; Predictive Maintenance <span class="count">5 topics</span></span>
+            <span class="chev">›</span>
+          </summary>
+          <div class="acc-body">
+            <ul>
+              <li>Autoencoders</li>
+              <li>Spectral models</li>
+              <li>Sensor fusion</li>
+              <li>Temporal GNNs</li>
+              <li>TinyML</li>
+            </ul>
+          </div>
+        </details>
+
+        <!-- I. Fraud, Risk, Security -->
+        <details class="acc-item">
+          <summary>
+            <span class="left"><span class="icon">🛡️</span> I. Fraud, Risk, Security <span class="count">5 topics</span></span>
+            <span class="chev">›</span>
+          </summary>
+          <div class="acc-body">
+            <ul>
+              <li>Graph-based fraud detection</li>
+              <li>Isolation Forest</li>
+              <li>GBDT models</li>
+              <li>Hybrid supervised + unsupervised</li>
+              <li>Sequence fraud models</li>
+            </ul>
+          </div>
+        </details>
+
+        <!-- J. Optimization & Reinforcement Learning -->
+        <details class="acc-item">
+          <summary>
+            <span class="left"><span class="icon">♟️</span> J. Optimization &amp; Reinforcement Learning <span class="count">5 topics</span></span>
+            <span class="chev">›</span>
+          </summary>
+          <div class="acc-body">
+            <ul>
+              <li>RLHF</li>
+              <li>Policy gradients</li>
+              <li>Bandits</li>
+              <li>Multi-agent RL</li>
+              <li>Constrained optimization</li>
+            </ul>
+          </div>
+        </details>
+
+        <!-- K. Classical ML -->
+        <details class="acc-item">
+          <summary>
+            <span class="left"><span class="icon">📊</span> K. Classical ML <span class="count">5 topics</span></span>
+            <span class="chev">›</span>
+          </summary>
+          <div class="acc-body">
+            <ul>
+              <li>Logistic regression</li>
+              <li>Random forest</li>
+              <li>SVM</li>
+              <li>KNN</li>
+              <li>Clustering</li>
+            </ul>
+          </div>
+        </details>
+
+        <!-- L. Tabular ML -->
+        <details class="acc-item">
+          <summary>
+            <span class="left"><span class="icon">📋</span> L. Tabular ML <span class="count">3 topics</span></span>
+            <span class="chev">›</span>
+          </summary>
+          <div class="acc-body">
+            <ul>
+              <li>XGBoost / LightGBM / CatBoost</li>
+              <li>TabTransformer</li>
+              <li>Wide &amp; Deep models</li>
+            </ul>
+          </div>
+        </details>
+
+        <!-- M. Multi-modal AI -->
+        <details class="acc-item">
+          <summary>
+            <span class="left"><span class="icon">🎛️</span> M. Multi-modal AI <span class="count">4 topics</span></span>
+            <span class="chev">›</span>
+          </summary>
+          <div class="acc-body">
+            <ul>
+              <li>CLIP</li>
+              <li>BLIP</li>
+              <li>Fusion transformers</li>
+              <li>Audio + text + vision</li>
+            </ul>
+          </div>
+        </details>
+
+        <!-- N. MLOps & Production AI -->
+        <details class="acc-item">
+          <summary>
+            <span class="left"><span class="icon">⚙️</span> N. MLOps &amp; Production AI <span class="count">5 topics</span></span>
+            <span class="chev">›</span>
+          </summary>
+          <div class="acc-body">
+            <ul>
+              <li>Feature stores</li>
+              <li>Model monitoring</li>
+              <li>Drift detection</li>
+              <li>CI/CD for ML</li>
+              <li>Vector databases</li>
+            </ul>
+          </div>
+        </details>
+
+        <!-- O. Data Engineering for AI -->
+        <details class="acc-item">
+          <summary>
+            <span class="left"><span class="icon">🗄️</span> O. Data Engineering for AI <span class="count">3 topics</span></span>
+            <span class="chev">›</span>
+          </summary>
+          <div class="acc-body">
+            <ul>
+              <li>Distributed processing</li>
+              <li>Data modeling</li>
+              <li>ETL pipelines</li>
+            </ul>
+          </div>
+        </details>
+
+        <!-- P. ML System Design -->
+        <details class="acc-item">
+          <summary>
+            <span class="left"><span class="icon">🏗️</span> P. ML System Design <span class="count">4 topics</span></span>
+            <span class="chev">›</span>
+          </summary>
+          <div class="acc-body">
+            <ul>
+              <li>ML system architecture</li>
+              <li>High-scale recommenders</li>
+              <li>LLM system design</li>
+              <li>Real-time inference</li>
+            </ul>
+          </div>
+        </details>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==============================
+       PROJECTS
+       ============================== -->
+  <section id="projects">
+    <div class="container">
+      <p class="section-label">Projects</p>
+      <h2 class="section-title">Portfolio Projects</h2>
+      <p class="section-desc">Hands-on builds planned to reinforce each learning area.</p>
+
+      <div class="projects-grid">
+        <div class="proj-card">
+          <h3>Cold-start Product Classification</h3>
+          <p>Classify new products with limited labels using embeddings and few-shot techniques.</p>
+          <span class="status not-started">Not Started</span>
+          <a href="#">View Details →</a>
+        </div>
+        <div class="proj-card">
+          <h3>Multi-product Recommendation System</h3>
+          <p>Unified recommender across multiple product lines using multi-task learning.</p>
+          <span class="status not-started">Not Started</span>
+          <a href="#">View Details →</a>
+        </div>
+        <div class="proj-card">
+          <h3>Graph-based Fraud Detection</h3>
+          <p>Detect fraudulent patterns using GNNs on transaction and entity graphs.</p>
+          <span class="status not-started">Not Started</span>
+          <a href="#">View Details →</a>
+        </div>
+        <div class="proj-card">
+          <h3>IoT Anomaly Detection with Autoencoders</h3>
+          <p>Unsupervised anomaly detection on sensor streams using reconstruction error.</p>
+          <span class="status not-started">Not Started</span>
+          <a href="#">View Details →</a>
+        </div>
+        <div class="proj-card">
+          <h3>Medical Imaging Classifier</h3>
+          <p>Transfer learning on chest X-rays or pathology slides for disease classification.</p>
+          <span class="status not-started">Not Started</span>
+          <a href="#">View Details →</a>
+        </div>
+        <div class="proj-card">
+          <h3>Time-series Forecasting</h3>
+          <p>Transformer-based forecasting for demand or sensor time-series.</p>
+          <span class="status not-started">Not Started</span>
+          <a href="#">View Details →</a>
+        </div>
+        <div class="proj-card">
+          <h3>Multi-modal Fusion Model</h3>
+          <p>Fuse text, image, and audio features for richer downstream predictions.</p>
+          <span class="status not-started">Not Started</span>
+          <a href="#">View Details →</a>
+        </div>
+        <div class="proj-card">
+          <h3>GNN-based Similarity Model</h3>
+          <p>Learn graph embeddings for entity similarity and retrieval tasks.</p>
+          <span class="status not-started">Not Started</span>
+          <a href="#">View Details →</a>
+        </div>
+        <div class="proj-card">
+          <h3>LLM RAG System</h3>
+          <p>Production-style retrieval-augmented generation with evaluation and guardrails.</p>
+          <span class="status not-started">Not Started</span>
+          <a href="#">View Details →</a>
+        </div>
+        <div class="proj-card">
+          <h3>AI Agent Workflow Automation</h3>
+          <p>Agentic workflow that plans, calls tools, and completes multi-step tasks.</p>
+          <span class="status not-started">Not Started</span>
+          <a href="#">View Details →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==============================
+       WEEKLY LEARNING ROADMAP
+       ============================== -->
+  <section id="roadmap">
+    <div class="container">
+      <p class="section-label">Roadmap</p>
+      <h2 class="section-title">Weekly Learning Plan</h2>
+      <p class="section-desc">A structured path from fundamentals to portfolio projects.</p>
+
+      <div class="roadmap">
+        <div class="roadmap-item"><h4>Week 1: GenAI Fundamentals</h4><p>LLMs, prompting, fine-tuning, RAG basics.</p></div>
+        <div class="roadmap-item"><h4>Week 2: NLP Transformers</h4><p>Attention, BERT/GPT variants, text tasks.</p></div>
+        <div class="roadmap-item"><h4>Week 3: Recommenders</h4><p>Collaborative filtering, graph recommenders, cold-start.</p></div>
+        <div class="roadmap-item"><h4>Week 4: Graph ML</h4><p>GNNs, embeddings, anomaly detection.</p></div>
+        <div class="roadmap-item"><h4>Week 5: Computer Vision</h4><p>CNNs, ViTs, detection, segmentation.</p></div>
+        <div class="roadmap-item"><h4>Week 6: IoT + Time-series</h4><p>Forecasting, autoencoders, sensor fusion.</p></div>
+        <div class="roadmap-item"><h4>Week 7: MLOps</h4><p>Feature stores, monitoring, CI/CD.</p></div>
+        <div class="roadmap-item"><h4>Week 8: System Design</h4><p>ML architecture, real-time inference, scaling.</p></div>
+        <div class="roadmap-item"><h4>Week 9+: Build Portfolio Projects</h4><p>Apply skills to the projects listed above.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==============================
+       RESOURCE LIBRARY
+       ============================== -->
+  <section id="resources">
+    <div class="container">
+      <p class="section-label">Resources</p>
+      <h2 class="section-title">Learning Library</h2>
+      <p class="section-desc">Curated references for each learning area.</p>
+
+      <div class="resources-grid">
+        <div class="res-card"><div class="icon">📄</div><h3>Papers</h3><p>Key research papers and surveys.</p></div>
+        <div class="res-card"><div class="icon">🎓</div><h3>Courses</h3><p>Online courses and specializations.</p></div>
+        <div class="res-card"><div class="icon">💻</div><h3>GitHub Repos</h3><p>Codebases and reference implementations.</p></div>
+        <div class="res-card"><div class="icon">📚</div><h3>Books</h3><p>Foundational and advanced texts.</p></div>
+        <div class="res-card"><div class="icon">✍️</div><h3>Blogs</h3><p>Practitioner blogs and tutorials.</p></div>
+        <div class="res-card"><div class="icon">▶️</div><h3>YouTube Playlists</h3><p>Video lectures and walkthroughs.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==============================
+       FOOTER
+       ============================== -->
+  <footer class="site-footer">
+    <div class="container">
+      <p>© 2026 Venkataramana</p>
+      <div class="footer-links">
+        <a href="https://github.com/ramana-analytics" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="https://www.linkedin.com/in/ramana-miryala/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a href="mailto:ramana@ramanaai.com">Email</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==============================
+       MINIMAL JAVASCRIPT
+       ============================== -->
+  <script>
+    (function () {
+      'use strict';
+
+      /* ---- Theme Toggle ---- */
+      const toggle = document.getElementById('themeToggle');
+      const icon = document.getElementById('themeIcon');
+      const label = document.getElementById('themeLabel');
+      const stored = localStorage.getItem('learning-theme');
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+      function setTheme(theme) {
+        document.documentElement.setAttribute('data-theme', theme);
+        localStorage.setItem('learning-theme', theme);
+        const isDark = theme === 'dark';
+        icon.textContent = isDark ? '☀️' : '🌙';
+        label.textContent = isDark ? 'Light' : 'Dark';
+      }
+
+      // Initialize theme from storage or system preference
+      setTheme(stored || (prefersDark ? 'dark' : 'light'));
+
+      toggle.addEventListener('click', () => {
+        const current = document.documentElement.getAttribute('data-theme');
+        setTheme(current === 'dark' ? 'light' : 'dark');
+      });
+
+      /* ---- Smooth Accordion (optional enhancement) ---- */
+      document.querySelectorAll('.acc-item summary').forEach(summary => {
+        summary.addEventListener('click', () => {
+          // Close other open items for a cleaner single-open accordion
+          document.querySelectorAll('.acc-item[open]').forEach(item => {
+            if (item !== summary.parentElement) item.removeAttribute('open');
+          });
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
