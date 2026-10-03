@@ -16,7 +16,15 @@ book:
     - index.qmd
     - part: "GenAI & Foundation Models"
       chapters:
+        # One line per .qmd file in chapters/genai/, in reading order.
+        - chapters/genai/index.qmd
         - chapters/genai/llm-foundations.qmd
+        # - chapters/genai/prompt-engineering.qmd      ← uncomment when written
+        # - chapters/genai/fine-tuning.qmd
+        # - chapters/genai/rag.qmd
+        # - chapters/genai/agents.qmd
+        # - chapters/genai/safety-guardrails.qmd
+        # - chapters/genai/evaluation.qmd
     - part: "NLP"
       chapters:
         - chapters/nlp/index.qmd

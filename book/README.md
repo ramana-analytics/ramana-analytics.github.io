@@ -49,6 +49,24 @@ Output lands in `book/_book/`.
 2. Add it to the `chapters:` list in `_quarto.yml` under the right part.
 3. Save — `quarto preview` picks it up automatically.
 
+## Multiple pages in one part (e.g. GenAI)
+
+A folder can hold as many `.qmd` files as you like — one per topic. The book's
+order is controlled by the **list in `_quarto.yml`**, not by the folder. Each
+part has an `index.qmd` (part intro page) followed by its chapters:
+
+```yaml
+- part: "GenAI & Foundation Models"
+  chapters:
+    - chapters/genai/index.qmd            ← part intro page
+    - chapters/genai/llm-foundations.qmd  ← chapter 1
+    - chapters/genai/prompt-engineering.qmd ← add when written
+    - chapters/genai/rag.qmd              ← add when written
+```
+
+To grow the book: create the `.qmd`, add one line to `_quarto.yml`, rebuild.
+Chapters auto-number (1.1, 1.2, ...) and get prev/next navigation for free.
+
 ## Writing conventions
 
 - **Math**: `$...$` inline, `$$...$$` display. Numbered + cross-referenceable:

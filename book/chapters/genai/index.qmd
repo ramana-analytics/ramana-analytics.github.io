@@ -1,0 +1,14 @@
+# GenAI & Foundation Models {.unnumbered}
+
+*Chapters in this part build from LLM foundations to production GenAI systems:
+prompt engineering, fine-tuning, RAG, agents, safety, and evaluation.*
+
+## Chapters in this part {.unnumbered}
+
+1. **LLM Foundations** — from neurons to Transformers to LLMs
+2. *Prompt Engineering* — planned
+3. *Fine-tuning (LoRA, QLoRA)* — planned
+4. *RAG* — planned
+5. *Agents* — planned
+6. *Safety & Guardrails* — planned
+7. *Evaluation* — planned
