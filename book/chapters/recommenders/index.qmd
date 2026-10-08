@@ -1,3 +1,5 @@
+{{< include ../../_macros.qmd >}}
+
 # Recommender Systems {.unnumbered}
 
 *This part is planned. Chapters will cover: multi-product recommenders,

@@ -1,3 +1,5 @@
+{{< include _macros.qmd >}}
+
 # References {.unnumbered}
 
 ::: {#refs}

@@ -2,6 +2,8 @@
 title: "Preface"
 ---
 
+{{< include _macros.qmd >}}
+
 # AI/ML Learning Notes {.unnumbered}
 
 These are my working notes on modern AI, machine learning, generative AI, NLP,

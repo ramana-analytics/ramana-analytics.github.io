@@ -74,14 +74,8 @@ format:
     citecolor: "NavyBlue"
     geometry:
       - margin=1in
-    header-includes:
-      - \usepackage{amsmath}
-      - \usepackage{amssymb}
-      - \usepackage{amsthm}
-      - \newcommand{\R}{\mathbb{R}}
-      - \newcommand{\E}{\mathbb{E}}
-      - \newcommand{\softmax}{\mathrm{softmax}}
-      - \newcommand{\attention}{\mathrm{attention}}
+    # Custom macros live in _macros.qmd (included in every chapter), so they
+    # work for HTML, PDF, and EPUB — do not redefine them here.
   epub:
     toc-title: "Contents"
 

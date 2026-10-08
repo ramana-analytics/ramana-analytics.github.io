@@ -1,3 +1,5 @@
+{{< include ../../_macros.qmd >}}
+
 # NLP {.unnumbered}
 
 *This part is planned. Chapters will cover: Transformers, text classification,

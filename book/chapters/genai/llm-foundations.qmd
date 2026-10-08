@@ -1,6 +1,9 @@
-# LLM Foundations: From Neurons to Large Language Models {#sec-llm-foundations}
+{{< include ../../_macros.qmd >}}
 
-Before understanding Large Language Models, we build the foundations layer by
+# LLM Foundations: From Neurons to Large Language Models {#sec-llm-foundations}
+The large lanugae models are used to understand the user input and provide right answer based on the context.
+In this chapter, the goal is to understand the working logic of how LLM is being built.
+We build the foundations layer by
 layer: the artificial neuron, multilayer networks, sequence models, attention,
 and the Transformer — the architecture every modern LLM is built on.
 

@@ -100,8 +100,8 @@ Chapters auto-number (1.1, 1.2, ...) and get prev/next navigation for free.
 
 ## Shared LaTeX macros
 
-Defined in `_quarto.yml` under `format: pdf: header-includes` (PDF) and usable
-in HTML math too:
+Defined once in `book/_macros.qmd` and included at the top of every `.qmd`
+file, so HTML, PDF, and EPUB all recognize them:
 
 | Macro | Expands to |
 |-------|-----------|
@@ -110,4 +110,8 @@ in HTML math too:
 | `\softmax` | $\mathrm{softmax}$ |
 | `\attention` | $\mathrm{attention}$ |
 
-Add your own once in `_quarto.yml` and every chapter can use them.
+Add new macros to `_macros.qmd` and every chapter can use them. When creating
+a new chapter file, start it with the include line:
+
+- In `book/` root files: `{{< include _macros.qmd >}}`
+- In `book/chapters/<area>/` files: `{{< include ../../_macros.qmd >}}`

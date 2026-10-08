@@ -1,7 +1,11 @@
+{{< include ../../_macros.qmd >}}
+
 # GenAI & Foundation Models {.unnumbered}
 
 *Chapters in this part build from LLM foundations to production GenAI systems:
-prompt engineering, fine-tuning, RAG, agents, safety, and evaluation.*
+prompt engineering, fine-tuning, RAG, agents, safety, and evaluation.
+Goal is to make things understanding much easier
+.*
 
 ## Chapters in this part {.unnumbered}
 

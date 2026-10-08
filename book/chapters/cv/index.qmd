@@ -1,3 +1,5 @@
+{{< include ../../_macros.qmd >}}
+
 # Computer Vision {.unnumbered}
 
 *This part is planned. Chapters will cover: CNNs, Vision Transformers, object

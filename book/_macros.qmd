@@ -1,0 +1,33 @@
+<!--
+  Shared LaTeX macros for the whole book.
+  Included at the top of every .qmd via:  {{< include _macros.qmd >}}
+  (chapters in subfolders use:            {{< include ../../_macros.qmd >}})
+
+  How it works per format:
+  - The plain \providecommand lines below are parsed by pandoc, which
+    registers the macros for math conversion (EPUB/MathML) and passes them
+    through into the PDF's LaTeX source. \providecommand is used (not
+    \newcommand) because the PDF book is one document — the include runs
+    once per chapter, and \providecommand safely no-ops when the macro
+    is already defined.
+  - The {=html} block is emitted only in HTML output, where MathJax
+    executes the \newcommands inside the hidden math and registers them
+    for the whole page.
+  Add new macros in BOTH places below.
+-->
+
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\E}{\mathbb{E}}
+\providecommand{\softmax}{\mathrm{softmax}}
+\providecommand{\attention}{\mathrm{attention}}
+
+```{=html}
+<div style="display:none">
+$$
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\softmax}{\mathrm{softmax}}
+\newcommand{\attention}{\mathrm{attention}}
+$$
+</div>
+```
